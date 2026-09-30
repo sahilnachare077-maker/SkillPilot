@@ -24,8 +24,8 @@
         <h1>What should<br><span>I learn next?</span></h1>
 
         <p>
-            Tell SkillPilot your goal, current skills, interests and available
-            time. We'll create a personalized learning roadmap for you.
+            SkillPilot understands your goal, skills and level,
+            then helps you discover what to learn next.
         </p>
 
         <button class="primary" onclick="showPage('goal')">
@@ -34,7 +34,6 @@
     </div>
 
     <div class="features">
-
         <div class="card">
             <div>🎯</div>
             <h3>Personalized</h3>
@@ -50,7 +49,7 @@
         <div class="card">
             <div>🧪</div>
             <h3>Practice</h3>
-            <p>Practice skills and build real projects.</p>
+            <p>Test your knowledge and practice skills.</p>
         </div>
 
         <div class="card">
@@ -58,14 +57,12 @@
             <h3>Track Progress</h3>
             <p>Track your learning journey and achievements.</p>
         </div>
-
     </div>
 </section>
 
 
 <!-- GOAL -->
 <section id="goal" class="page">
-
     <div class="setup">
 
         <button class="back" onclick="showPage('home')">← Back</button>
@@ -73,10 +70,7 @@
         <div class="step">STEP 1 OF 5</div>
 
         <h1>What do you want to become?</h1>
-
-        <p class="subtitle">
-            Choose your career goal.
-        </p>
+        <p class="subtitle">Choose your career goal.</p>
 
         <div class="goal-grid">
 
@@ -136,9 +130,7 @@
                style="display:none;">
 
         <div class="next">
-            <button class="primary" onclick="goSkills()">
-                Continue →
-            </button>
+            <button class="primary" onclick="goSkills()">Continue →</button>
         </div>
 
     </div>
@@ -147,7 +139,6 @@
 
 <!-- SKILLS -->
 <section id="skills" class="page">
-
     <div class="setup">
 
         <button class="back" onclick="showPage('goal')">← Back</button>
@@ -161,7 +152,6 @@
         </p>
 
         <div class="skill-list">
-
             <button class="skill" onclick="toggleSkill(this)">Python</button>
             <button class="skill" onclick="toggleSkill(this)">C / C++</button>
             <button class="skill" onclick="toggleSkill(this)">Java</button>
@@ -173,13 +163,10 @@
             <button class="skill" onclick="toggleSkill(this)">Figma</button>
             <button class="skill" onclick="toggleSkill(this)">Linux</button>
             <button class="skill" onclick="toggleSkill(this)">None</button>
-
         </div>
 
         <div class="next">
-            <button class="primary" onclick="goLevel()">
-                Continue →
-            </button>
+            <button class="primary" onclick="goLevel()">Continue →</button>
         </div>
 
     </div>
@@ -188,7 +175,6 @@
 
 <!-- LEVEL -->
 <section id="level" class="page">
-
     <div class="setup">
 
         <button class="back" onclick="showPage('skills')">← Back</button>
@@ -212,21 +198,19 @@
             <div class="level" onclick="selectLevel(this,'Intermediate')">
                 <span>⚡</span>
                 <h3>Intermediate</h3>
-                <p>I know the fundamentals and have some practice.</p>
+                <p>I know the fundamentals.</p>
             </div>
 
             <div class="level" onclick="selectLevel(this,'Advanced')">
                 <span>🔥</span>
                 <h3>Advanced</h3>
-                <p>I already have strong knowledge and experience.</p>
+                <p>I already have strong knowledge.</p>
             </div>
 
         </div>
 
         <div class="next">
-            <button class="primary" onclick="goTime()">
-                Continue →
-            </button>
+            <button class="primary" onclick="goTime()">Continue →</button>
         </div>
 
     </div>
@@ -235,7 +219,6 @@
 
 <!-- TIME -->
 <section id="time" class="page">
-
     <div class="setup">
 
         <button class="back" onclick="showPage('level')">← Back</button>
@@ -277,9 +260,7 @@
         </div>
 
         <div class="next">
-            <button class="primary" onclick="goInterests()">
-                Continue →
-            </button>
+            <button class="primary" onclick="goInterests()">Continue →</button>
         </div>
 
     </div>
@@ -288,7 +269,6 @@
 
 <!-- INTERESTS -->
 <section id="interests" class="page">
-
     <div class="setup">
 
         <button class="back" onclick="showPage('time')">← Back</button>
@@ -349,7 +329,6 @@
 
 <!-- RESULT -->
 <section id="result" class="page">
-
     <div class="result">
 
         <div class="success">✨ YOUR PROFILE IS READY</div>
@@ -357,8 +336,8 @@
         <h1>Your SkillPilot journey is ready.</h1>
 
         <p>
-            We've collected your preferences. Your personalized roadmap
-            can now be generated.
+            Your profile has been created. Now let's check your current
+            knowledge level.
         </p>
 
         <div class="profile-summary">
@@ -385,8 +364,142 @@
 
         </div>
 
-        <button class="primary" onclick="alert('Assessment module coming next! 🚀')">
+        <button class="primary" onclick="startAssessment()">
             Start Skill Assessment →
+        </button>
+
+    </div>
+</section>
+
+
+<!-- ASSESSMENT -->
+<section id="assessment" class="page">
+
+    <div class="assessment">
+
+        <div class="assessment-top">
+            <button class="back" onclick="showPage('result')">
+                ← Profile
+            </button>
+
+            <span id="questionCounter">Question 1 of 10</span>
+        </div>
+
+        <div class="progress">
+            <div id="progressBar"></div>
+        </div>
+
+        <div class="assessment-card">
+
+            <div class="assessment-tag">
+                SKILL ASSESSMENT
+            </div>
+
+            <h1 id="questionText">
+                Question
+            </h1>
+
+            <div id="options" class="options"></div>
+
+            <div class="assessment-actions">
+
+                <button id="prevBtn"
+                        class="secondary"
+                        onclick="previousQuestion()">
+                    ← Previous
+                </button>
+
+                <button id="nextBtn"
+                        class="primary"
+                        onclick="nextQuestion()">
+                    Next →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ASSESSMENT RESULT -->
+<section id="assessmentResult" class="page">
+
+    <div class="assessment-result">
+
+        <div class="success">🎉 ASSESSMENT COMPLETE</div>
+
+        <h1>Your Skill Analysis</h1>
+
+        <div class="score-circle">
+            <span id="scoreNumber">0%</span>
+        </div>
+
+        <h2 id="assessmentLevel">Beginner</h2>
+
+        <p id="assessmentMessage">
+            Your personalized learning path is ready.
+        </p>
+
+        <div class="analysis-grid">
+
+            <div class="analysis-box">
+                <span>✅</span>
+                <strong id="correctCount">0</strong>
+                <small>Correct</small>
+            </div>
+
+            <div class="analysis-box">
+                <span>❌</span>
+                <strong id="wrongCount">0</strong>
+                <small>Incorrect</small>
+            </div>
+
+            <div class="analysis-box">
+                <span>🎯</span>
+                <strong id="focusCount">0</strong>
+                <small>Focus Areas</small>
+            </div>
+
+        </div>
+
+        <div class="weak-area">
+            <h3>📌 Recommended Focus</h3>
+            <p id="weakTopics">
+                Your focus areas will appear here.
+            </p>
+        </div>
+
+        <button class="primary" onclick="showRoadmap()">
+            View My Roadmap →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ROADMAP -->
+<section id="roadmap" class="page">
+
+    <div class="roadmap">
+
+        <div class="success">🗺️ PERSONALIZED ROADMAP</div>
+
+        <h1 id="roadmapTitle">
+            Your Learning Roadmap
+        </h1>
+
+        <p id="roadmapSubtitle">
+            Based on your assessment.
+        </p>
+
+        <div id="roadmapList" class="roadmap-list"></div>
+
+        <button class="primary" onclick="showPage('home')">
+            Back to SkillPilot
         </button>
 
     </div>
@@ -402,4 +515,4 @@
 <script src="script.js"></script>
 
 </body>
-</html>
+                                                                     </html>
