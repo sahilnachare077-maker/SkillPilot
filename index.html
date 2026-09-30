@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SkillPilot — Learn Smarter</title>
+<title>SkillPilot</title>
 
 <style>
 *{
@@ -16,8 +16,12 @@
 body{
     font-family:Arial, sans-serif;
     background:#07111f;
-    color:white;
+    color:#fff;
     min-height:100vh;
+}
+
+button{
+    font-family:inherit;
 }
 
 /* NAVBAR */
@@ -27,50 +31,59 @@ body{
     align-items:center;
     justify-content:space-between;
     padding:0 7%;
-    border-bottom:1px solid rgba(255,255,255,0.08);
+    border-bottom:1px solid #17263a;
 }
 
 .logo{
     font-size:23px;
     font-weight:bold;
-    letter-spacing:1px;
 }
 
 .logo span{
-    color:#5b8cff;
+    color:#6d9cff;
 }
 
 .nav-btn{
-    padding:10px 18px;
-    border:1px solid #31445f;
-    border-radius:10px;
     background:#101d30;
     color:white;
+    border:1px solid #29405e;
+    padding:9px 17px;
+    border-radius:9px;
 }
 
-/* HERO */
+/* COMMON */
+.page{
+    display:none;
+    min-height:calc(100vh - 70px);
+}
+
+.page.active{
+    display:block;
+}
+
+/* HOME */
 .hero{
-    max-width:1100px;
+    max-width:1000px;
     margin:auto;
-    padding:85px 20px 50px;
+    padding:80px 20px;
     text-align:center;
 }
 
 .badge{
     display:inline-block;
-    background:#101f38;
-    border:1px solid #263c60;
-    color:#80aaff;
     padding:8px 15px;
+    background:#10213b;
+    border:1px solid #29436b;
+    color:#80aaff;
     border-radius:30px;
     font-size:13px;
     margin-bottom:22px;
 }
 
 .hero h1{
-    font-size:clamp(42px,8vw,76px);
+    font-size:clamp(42px,8vw,75px);
     line-height:1.05;
-    margin-bottom:20px;
+    margin-bottom:22px;
 }
 
 .hero h1 span{
@@ -78,17 +91,17 @@ body{
 }
 
 .hero p{
-    color:#9eabc0;
-    font-size:17px;
     max-width:620px;
     margin:auto;
+    color:#9baabd;
     line-height:1.7;
+    font-size:16px;
 }
 
-.start-btn{
-    margin-top:32px;
+.primary-btn{
+    margin-top:30px;
     padding:15px 27px;
-    border:0;
+    border:none;
     border-radius:12px;
     background:#5b8cff;
     color:white;
@@ -97,14 +110,14 @@ body{
     cursor:pointer;
 }
 
-.start-btn:hover{
+.primary-btn:hover{
     opacity:.9;
 }
 
 /* FEATURES */
 .features{
-    max-width:1050px;
-    margin:30px auto 80px;
+    max-width:1000px;
+    margin:0 auto 70px;
     padding:20px;
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -113,97 +126,134 @@ body{
 
 .card{
     background:#0d1a2c;
-    border:1px solid #1c304b;
+    border:1px solid #1d314c;
     border-radius:16px;
-    padding:23px;
-    text-align:left;
+    padding:22px;
 }
 
-.icon{
+.card-icon{
     font-size:25px;
-    margin-bottom:15px;
+    margin-bottom:14px;
 }
 
 .card h3{
-    font-size:17px;
     margin-bottom:8px;
 }
 
 .card p{
-    color:#8f9db2;
+    color:#8d9bb0;
     font-size:13px;
     line-height:1.5;
 }
 
-/* ROADMAP PREVIEW */
-.preview{
-    max-width:900px;
-    margin:0 auto 80px;
-    padding:0 20px;
+/* SETUP PAGES */
+.setup{
+    max-width:850px;
+    margin:auto;
+    padding:45px 20px;
 }
 
-.preview-box{
-    background:#0b1728;
-    border:1px solid #1c304b;
-    border-radius:20px;
-    padding:25px;
-}
-
-.preview-title{
-    display:flex;
-    justify-content:space-between;
+.back{
+    background:none;
+    border:none;
+    color:#91a5c1;
+    cursor:pointer;
     margin-bottom:25px;
+    font-size:14px;
 }
 
-.preview-title small{
-    color:#8493aa;
+.step{
+    color:#6d9cff;
+    font-size:13px;
+    margin-bottom:10px;
 }
 
-.progress{
-    height:7px;
-    background:#1b2a40;
-    border-radius:10px;
-    overflow:hidden;
-    margin-top:10px;
+.setup h1{
+    font-size:36px;
+    margin-bottom:10px;
 }
 
-.progress div{
-    width:42%;
-    height:100%;
-    background:#5b8cff;
+.setup-subtitle{
+    color:#8999ae;
+    margin-bottom:30px;
 }
 
-.roadmap{
+/* GOALS */
+.goal-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.goal{
+    background:#0d1a2c;
+    border:1px solid #1e334f;
+    border-radius:15px;
+    padding:20px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.goal:hover{
+    border-color:#5b8cff;
+    transform:translateY(-2px);
+}
+
+.goal.selected{
+    border-color:#6d9cff;
+    background:#122541;
+}
+
+.goal-icon{
+    font-size:28px;
+    margin-bottom:12px;
+}
+
+.goal h3{
+    margin-bottom:6px;
+}
+
+.goal p{
+    color:#8292a8;
+    font-size:13px;
+}
+
+/* SKILLS */
+.skill-box{
     display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
     flex-wrap:wrap;
+    gap:12px;
 }
 
-.node{
+.skill{
     padding:12px 17px;
-    background:#13243b;
-    border:1px solid #2a4262;
+    background:#0d1a2c;
+    border:1px solid #263d5b;
     border-radius:10px;
-    font-size:13px;
+    color:#c7d1df;
+    cursor:pointer;
 }
 
-.node.done{
-    border-color:#4d9c77;
+.skill.selected{
+    background:#162e50;
+    border-color:#6d9cff;
+    color:white;
 }
 
-.arrow{
-    color:#647895;
+.custom-input{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    background:#0d1a2c;
+    color:white;
+    border:1px solid #263d5b;
+    border-radius:10px;
+    outline:none;
 }
 
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:25px;
-    border-top:1px solid rgba(255,255,255,.07);
-    color:#66758c;
-    font-size:13px;
+.continue-area{
+    text-align:right;
+    margin-top:30px;
 }
 
 /* MOBILE */
@@ -214,32 +264,23 @@ footer{
     }
 
     .hero{
-        padding-top:65px;
+        padding:65px 20px;
     }
 
     .hero h1{
-        font-size:45px;
-    }
-
-    .hero p{
-        font-size:15px;
+        font-size:43px;
     }
 
     .features{
         grid-template-columns:1fr 1fr;
-        margin-bottom:50px;
     }
 
-    .card{
-        padding:18px;
+    .goal-grid{
+        grid-template-columns:1fr;
     }
 
-    .roadmap{
-        flex-direction:column;
-    }
-
-    .arrow{
-        transform:rotate(90deg);
+    .setup h1{
+        font-size:30px;
     }
 }
 
@@ -247,10 +288,6 @@ footer{
 
     .features{
         grid-template-columns:1fr;
-    }
-
-    .hero h1{
-        font-size:40px;
     }
 
     .nav-btn{
@@ -269,90 +306,144 @@ footer{
 </nav>
 
 
-<!-- HERO -->
-<section class="hero">
+<!-- ================= HOME ================= -->
 
-    <div class="badge">🚀 Personalized Learning Platform</div>
+<section id="home" class="page active">
 
-    <h1>
-        What should<br>
-        <span>I learn next?</span>
-    </h1>
+    <div class="hero">
 
-    <p>
-        Tell SkillPilot your goal, skills, interests and available time.
-        We'll create a personalized learning roadmap made for you.
-    </p>
+        <div class="badge">
+            🚀 Personalized Learning Platform
+        </div>
 
-    <button class="start-btn" onclick="startJourney()">
-        Build My Roadmap →
-    </button>
+        <h1>
+            What should<br>
+            <span>I learn next?</span>
+        </h1>
+
+        <p>
+            Tell SkillPilot your goal, current skills and interests.
+            We'll create a personalized roadmap to help you reach your career goal.
+        </p>
+
+        <button class="primary-btn" onclick="showPage('goal')">
+            Build My Roadmap →
+        </button>
+
+    </div>
+
+    <div class="features">
+
+        <div class="card">
+            <div class="card-icon">🎯</div>
+            <h3>Personalized</h3>
+            <p>Your roadmap is created around your goals and current level.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🗺️</div>
+            <h3>Smart Roadmap</h3>
+            <p>Know exactly what to learn next.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🧪</div>
+            <h3>Practice</h3>
+            <p>Practice concepts and build real projects.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🏆</div>
+            <h3>Track Progress</h3>
+            <p>Track your skills, projects and learning progress.</p>
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- FEATURES -->
-<section class="features">
+<!-- ================= GOAL ================= -->
 
-    <div class="card">
-        <div class="icon">🎯</div>
-        <h3>Personalized</h3>
-        <p>Your learning path is created according to your goal and current skills.</p>
-    </div>
+<section id="goal" class="page">
 
-    <div class="card">
-        <div class="icon">🗺️</div>
-        <h3>Smart Roadmap</h3>
-        <p>Follow a clear step-by-step roadmap instead of random courses.</p>
-    </div>
+    <div class="setup">
 
-    <div class="card">
-        <div class="icon">🧪</div>
-        <h3>Practice & Projects</h3>
-        <p>Learn concepts, practice them and build real projects.</p>
-    </div>
+        <button class="back" onclick="showPage('home')">
+            ← Back
+        </button>
 
-    <div class="card">
-        <div class="icon">🏆</div>
-        <h3>Track Progress</h3>
-        <p>Earn XP, complete skills and see your progress over time.</p>
-    </div>
+        <div class="step">STEP 1 OF 5</div>
 
-</section>
+        <h1>What do you want to become?</h1>
 
+        <p class="setup-subtitle">
+            Choose a career goal. We'll build your learning path around it.
+        </p>
 
-<!-- ROADMAP PREVIEW -->
-<section class="preview">
+        <div class="goal-grid">
 
-    <div class="preview-box">
-
-        <div class="preview-title">
-            <div>
-                <strong>Your Learning Journey</strong>
-                <div class="progress">
-                    <div></div>
-                </div>
+            <div class="goal" onclick="selectGoal(this,'AI / ML')">
+                <div class="goal-icon">🤖</div>
+                <h3>AI / ML</h3>
+                <p>Artificial Intelligence & Machine Learning</p>
             </div>
 
-            <small>42% Complete</small>
+            <div class="goal" onclick="selectGoal(this,'Data Science')">
+                <div class="goal-icon">📊</div>
+                <h3>Data Science</h3>
+                <p>Data analysis, statistics & insights</p>
+            </div>
+
+            <div class="goal" onclick="selectGoal(this,'Cybersecurity')">
+                <div class="goal-icon">🛡️</div>
+                <h3>Cybersecurity</h3>
+                <p>Security, networks & ethical hacking</p>
+            </div>
+
+            <div class="goal" onclick="selectGoal(this,'Web Development')">
+                <div class="goal-icon">🌐</div>
+                <h3>Web Development</h3>
+                <p>Frontend, backend & full-stack</p>
+            </div>
+
+            <div class="goal" onclick="selectGoal(this,'UI / UX')">
+                <div class="goal-icon">🎨</div>
+                <h3>UI / UX</h3>
+                <p>Design, research & user experience</p>
+            </div>
+
+            <div class="goal" onclick="selectGoal(this,'Electronics')">
+                <div class="goal-icon">⚡</div>
+                <h3>Electronics</h3>
+                <p>Circuits, embedded systems & hardware</p>
+            </div>
+
+            <div class="goal" onclick="selectGoal(this,'Programming')">
+                <div class="goal-icon">💻</div>
+                <h3>Programming</h3>
+                <p>Build strong programming fundamentals</p>
+            </div>
+
+            <div class="goal" onclick="selectGoal(this,'Other')">
+                <div class="goal-icon">✨</div>
+                <h3>Other</h3>
+                <p>Create your own custom goal</p>
+            </div>
+
         </div>
 
-        <div class="roadmap">
+        <input
+            id="customGoal"
+            class="custom-input"
+            placeholder="If you selected Other, type your goal..."
+            style="display:none;"
+        >
 
-            <div class="node done">🟢 Python</div>
-
-            <div class="arrow">→</div>
-
-            <div class="node done">🟢 NumPy</div>
-
-            <div class="arrow">→</div>
-
-            <div class="node">🟡 Pandas</div>
-
-            <div class="arrow">→</div>
-
-            <div class="node">🔒 Machine Learning</div>
-
+        <div class="continue-area">
+            <button class="primary-btn" onclick="goToSkills()">
+                Continue →
+            </button>
         </div>
 
     </div>
@@ -360,18 +451,144 @@ footer{
 </section>
 
 
-<footer>
-    © 2026 SkillPilot · Learn smarter. Build skills. Reach your goal.
-</footer>
+<!-- ================= SKILLS ================= -->
+
+<section id="skills" class="page">
+
+    <div class="setup">
+
+        <button class="back" onclick="showPage('goal')">
+            ← Back
+        </button>
+
+        <div class="step">STEP 2 OF 5</div>
+
+        <h1>What do you already know?</h1>
+
+        <p class="setup-subtitle">
+            Select the skills you already have. Don't worry if you're starting from zero.
+        </p>
+
+        <div class="skill-box">
+
+            <div class="skill" onclick="toggleSkill(this)">Python</div>
+            <div class="skill" onclick="toggleSkill(this)">C / C++</div>
+            <div class="skill" onclick="toggleSkill(this)">Java</div>
+            <div class="skill" onclick="toggleSkill(this)">JavaScript</div>
+            <div class="skill" onclick="toggleSkill(this)">HTML / CSS</div>
+            <div class="skill" onclick="toggleSkill(this)">SQL</div>
+            <div class="skill" onclick="toggleSkill(this)">Git / GitHub</div>
+            <div class="skill" onclick="toggleSkill(this)">Excel</div>
+            <div class="skill" onclick="toggleSkill(this)">Figma</div>
+            <div class="skill" onclick="toggleSkill(this)">Linux</div>
+            <div class="skill" onclick="toggleSkill(this)">None</div>
+
+        </div>
+
+        <div class="continue-area">
+            <button class="primary-btn" onclick="finishSkills()">
+                Continue →
+            </button>
+        </div>
+
+    </div>
+
+</section>
 
 
 <script>
 
-function startJourney(){
+let selectedGoal = "";
+let selectedSkills = [];
+
+
+function showPage(page){
+
+    document.querySelectorAll(".page").forEach(function(section){
+        section.classList.remove("active");
+    });
+
+    document.getElementById(page).classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+function selectGoal(element, goal){
+
+    document.querySelectorAll(".goal").forEach(function(item){
+        item.classList.remove("selected");
+    });
+
+    element.classList.add("selected");
+
+    selectedGoal = goal;
+
+    if(goal === "Other"){
+        document.getElementById("customGoal").style.display = "block";
+    }else{
+        document.getElementById("customGoal").style.display = "none";
+    }
+}
+
+
+function goToSkills(){
+
+    if(selectedGoal === ""){
+
+        alert("Please select your career goal first.");
+
+        return;
+    }
+
+    if(selectedGoal === "Other"){
+
+        let custom = document.getElementById("customGoal").value.trim();
+
+        if(custom === ""){
+            alert("Please enter your custom goal.");
+            return;
+        }
+
+        selectedGoal = custom;
+    }
+
+    showPage("skills");
+}
+
+
+function toggleSkill(element){
+
+    let skill = element.innerText;
+
+    element.classList.toggle("selected");
+
+    if(element.classList.contains("selected")){
+
+        if(!selectedSkills.includes(skill)){
+            selectedSkills.push(skill);
+        }
+
+    }else{
+
+        selectedSkills = selectedSkills.filter(function(item){
+            return item !== skill;
+        });
+
+    }
+}
+
+
+function finishSkills(){
 
     alert(
-        "Welcome to SkillPilot! 🚀\n\n" +
-        "Your personalized learning journey is about to begin."
+        "Great! 🚀\n\n" +
+        "Goal: " + selectedGoal + "\n" +
+        "Skills selected: " + selectedSkills.length + "\n\n" +
+        "Next: Level & Learning Time"
     );
 
 }
@@ -379,4 +596,4 @@ function startJourney(){
 </script>
 
 </body>
-      </html>
+                </html>
