@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SkillPilot — Learn Smarter</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#07111f;
+    color:white;
+    min-height:100vh;
+}
+
+/* NAVBAR */
+.navbar{
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+    font-size:23px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#5b8cff;
+}
+
+.nav-btn{
+    padding:10px 18px;
+    border:1px solid #31445f;
+    border-radius:10px;
+    background:#101d30;
+    color:white;
+}
+
+/* HERO */
+.hero{
+    max-width:1100px;
+    margin:auto;
+    padding:85px 20px 50px;
+    text-align:center;
+}
+
+.badge{
+    display:inline-block;
+    background:#101f38;
+    border:1px solid #263c60;
+    color:#80aaff;
+    padding:8px 15px;
+    border-radius:30px;
+    font-size:13px;
+    margin-bottom:22px;
+}
+
+.hero h1{
+    font-size:clamp(42px,8vw,76px);
+    line-height:1.05;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#6d9cff;
+}
+
+.hero p{
+    color:#9eabc0;
+    font-size:17px;
+    max-width:620px;
+    margin:auto;
+    line-height:1.7;
+}
+
+.start-btn{
+    margin-top:32px;
+    padding:15px 27px;
+    border:0;
+    border-radius:12px;
+    background:#5b8cff;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.start-btn:hover{
+    opacity:.9;
+}
+
+/* FEATURES */
+.features{
+    max-width:1050px;
+    margin:30px auto 80px;
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.card{
+    background:#0d1a2c;
+    border:1px solid #1c304b;
+    border-radius:16px;
+    padding:23px;
+    text-align:left;
+}
+
+.icon{
+    font-size:25px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    font-size:17px;
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#8f9db2;
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* ROADMAP PREVIEW */
+.preview{
+    max-width:900px;
+    margin:0 auto 80px;
+    padding:0 20px;
+}
+
+.preview-box{
+    background:#0b1728;
+    border:1px solid #1c304b;
+    border-radius:20px;
+    padding:25px;
+}
+
+.preview-title{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.preview-title small{
+    color:#8493aa;
+}
+
+.progress{
+    height:7px;
+    background:#1b2a40;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.progress div{
+    width:42%;
+    height:100%;
+    background:#5b8cff;
+}
+
+.roadmap{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.node{
+    padding:12px 17px;
+    background:#13243b;
+    border:1px solid #2a4262;
+    border-radius:10px;
+    font-size:13px;
+}
+
+.node.done{
+    border-color:#4d9c77;
+}
+
+.arrow{
+    color:#647895;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:25px;
+    border-top:1px solid rgba(255,255,255,.07);
+    color:#66758c;
+    font-size:13px;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+    .navbar{
+        padding:0 20px;
+    }
+
+    .hero{
+        padding-top:65px;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .features{
+        grid-template-columns:1fr 1fr;
+        margin-bottom:50px;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    .roadmap{
+        flex-direction:column;
+    }
+
+    .arrow{
+        transform:rotate(90deg);
+    }
+}
+
+@media(max-width:430px){
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .nav-btn{
+        display:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">Skill<span>Pilot</span></div>
+    <button class="nav-btn">Sign In</button>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="badge">🚀 Personalized Learning Platform</div>
+
+    <h1>
+        What should<br>
+        <span>I learn next?</span>
+    </h1>
+
+    <p>
+        Tell SkillPilot your goal, skills, interests and available time.
+        We'll create a personalized learning roadmap made for you.
+    </p>
+
+    <button class="start-btn" onclick="startJourney()">
+        Build My Roadmap →
+    </button>
+
+</section>
+
+
+<!-- FEATURES -->
+<section class="features">
+
+    <div class="card">
+        <div class="icon">🎯</div>
+        <h3>Personalized</h3>
+        <p>Your learning path is created according to your goal and current skills.</p>
+    </div>
+
+    <div class="card">
+        <div class="icon">🗺️</div>
+        <h3>Smart Roadmap</h3>
+        <p>Follow a clear step-by-step roadmap instead of random courses.</p>
+    </div>
+
+    <div class="card">
+        <div class="icon">🧪</div>
+        <h3>Practice & Projects</h3>
+        <p>Learn concepts, practice them and build real projects.</p>
+    </div>
+
+    <div class="card">
+        <div class="icon">🏆</div>
+        <h3>Track Progress</h3>
+        <p>Earn XP, complete skills and see your progress over time.</p>
+    </div>
+
+</section>
+
+
+<!-- ROADMAP PREVIEW -->
+<section class="preview">
+
+    <div class="preview-box">
+
+        <div class="preview-title">
+            <div>
+                <strong>Your Learning Journey</strong>
+                <div class="progress">
+                    <div></div>
+                </div>
+            </div>
+
+            <small>42% Complete</small>
+        </div>
+
+        <div class="roadmap">
+
+            <div class="node done">🟢 Python</div>
+
+            <div class="arrow">→</div>
+
+            <div class="node done">🟢 NumPy</div>
+
+            <div class="arrow">→</div>
+
+            <div class="node">🟡 Pandas</div>
+
+            <div class="arrow">→</div>
+
+            <div class="node">🔒 Machine Learning</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+    © 2026 SkillPilot · Learn smarter. Build skills. Reach your goal.
+</footer>
+
+
+<script>
+
+function startJourney(){
+
+    alert(
+        "Welcome to SkillPilot! 🚀\n\n" +
+        "Your personalized learning journey is about to begin."
+    );
+
+}
+
+</script>
+
+</body>
+      </html>
