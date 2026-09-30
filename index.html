@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkillPilot</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillPilot</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header class="navbar">
     <div class="logo">Skill<span>Pilot</span></div>
+
+    <nav>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('dashboard')">Dashboard</button>
+        <button onclick="showPage('roadmap')">Roadmap</button>
+    </nav>
+
     <button class="signin">Sign In</button>
 </header>
 
@@ -18,22 +25,26 @@
 
 <!-- HOME -->
 <section id="home" class="page active">
+
     <div class="hero">
+
         <div class="badge">🚀 Personalized Learning Platform</div>
 
         <h1>What should<br><span>I learn next?</span></h1>
 
         <p>
-            SkillPilot understands your goal, skills and level,
-            then helps you discover what to learn next.
+            SkillPilot creates a personalized learning journey based on
+            your goal, skills, level and available time.
         </p>
 
         <button class="primary" onclick="showPage('goal')">
             Build My Roadmap →
         </button>
+
     </div>
 
     <div class="features">
+
         <div class="card">
             <div>🎯</div>
             <h3>Personalized</h3>
@@ -49,377 +60,349 @@
         <div class="card">
             <div>🧪</div>
             <h3>Practice</h3>
-            <p>Test your knowledge and practice skills.</p>
+            <p>Practice skills and build real projects.</p>
         </div>
 
         <div class="card">
             <div>🏆</div>
             <h3>Track Progress</h3>
-            <p>Track your learning journey and achievements.</p>
+            <p>Track your progress and achievements.</p>
         </div>
+
     </div>
+
 </section>
 
 
 <!-- GOAL -->
 <section id="goal" class="page">
-    <div class="setup">
 
-        <button class="back" onclick="showPage('home')">← Back</button>
+<div class="setup">
 
-        <div class="step">STEP 1 OF 5</div>
+<button class="back" onclick="showPage('home')">← Back</button>
 
-        <h1>What do you want to become?</h1>
-        <p class="subtitle">Choose your career goal.</p>
+<div class="step">STEP 1 OF 5</div>
 
-        <div class="goal-grid">
+<h1>What do you want to become?</h1>
+<p class="subtitle">Choose your career goal.</p>
 
-            <div class="goal" onclick="selectGoal(this,'AI / ML')">
-                <span>🤖</span>
-                <h3>AI / ML</h3>
-                <p>Artificial Intelligence & Machine Learning</p>
-            </div>
+<div class="goal-grid">
 
-            <div class="goal" onclick="selectGoal(this,'Data Science')">
-                <span>📊</span>
-                <h3>Data Science</h3>
-                <p>Data analysis and statistics</p>
-            </div>
+<div class="goal" onclick="selectGoal(this,'AI / ML')">
+<span>🤖</span>
+<h3>AI / ML</h3>
+<p>Artificial Intelligence & Machine Learning</p>
+</div>
 
-            <div class="goal" onclick="selectGoal(this,'Cybersecurity')">
-                <span>🛡️</span>
-                <h3>Cybersecurity</h3>
-                <p>Security and ethical hacking</p>
-            </div>
+<div class="goal" onclick="selectGoal(this,'Data Science')">
+<span>📊</span>
+<h3>Data Science</h3>
+<p>Data analysis and statistics</p>
+</div>
 
-            <div class="goal" onclick="selectGoal(this,'Web Development')">
-                <span>🌐</span>
-                <h3>Web Development</h3>
-                <p>Frontend, backend & full-stack</p>
-            </div>
+<div class="goal" onclick="selectGoal(this,'Cybersecurity')">
+<span>🛡️</span>
+<h3>Cybersecurity</h3>
+<p>Security and ethical hacking</p>
+</div>
 
-            <div class="goal" onclick="selectGoal(this,'UI / UX')">
-                <span>🎨</span>
-                <h3>UI / UX</h3>
-                <p>Design and user experience</p>
-            </div>
+<div class="goal" onclick="selectGoal(this,'Web Development')">
+<span>🌐</span>
+<h3>Web Development</h3>
+<p>Frontend, backend & full-stack</p>
+</div>
 
-            <div class="goal" onclick="selectGoal(this,'Electronics')">
-                <span>⚡</span>
-                <h3>Electronics</h3>
-                <p>Hardware and embedded systems</p>
-            </div>
+<div class="goal" onclick="selectGoal(this,'UI / UX')">
+<span>🎨</span>
+<h3>UI / UX</h3>
+<p>Design and user experience</p>
+</div>
 
-            <div class="goal" onclick="selectGoal(this,'Programming')">
-                <span>💻</span>
-                <h3>Programming</h3>
-                <p>Programming fundamentals</p>
-            </div>
+<div class="goal" onclick="selectGoal(this,'Electronics')">
+<span>⚡</span>
+<h3>Electronics</h3>
+<p>Hardware and embedded systems</p>
+</div>
 
-            <div class="goal" onclick="selectGoal(this,'Other')">
-                <span>✨</span>
-                <h3>Other</h3>
-                <p>Choose your own goal</p>
-            </div>
+<div class="goal" onclick="selectGoal(this,'Programming')">
+<span>💻</span>
+<h3>Programming</h3>
+<p>Programming fundamentals</p>
+</div>
 
-        </div>
+<div class="goal" onclick="selectGoal(this,'Other')">
+<span>✨</span>
+<h3>Other</h3>
+<p>Choose your own goal</p>
+</div>
 
-        <input id="customGoal"
-               class="input"
-               placeholder="Enter your custom goal..."
-               style="display:none;">
+</div>
 
-        <div class="next">
-            <button class="primary" onclick="goSkills()">Continue →</button>
-        </div>
+<input id="customGoal"
+class="input"
+placeholder="Enter your custom goal..."
+style="display:none;">
 
-    </div>
+<div class="next">
+<button class="primary" onclick="goSkills()">Continue →</button>
+</div>
+
+</div>
+
 </section>
 
 
 <!-- SKILLS -->
 <section id="skills" class="page">
-    <div class="setup">
 
-        <button class="back" onclick="showPage('goal')">← Back</button>
+<div class="setup">
 
-        <div class="step">STEP 2 OF 5</div>
+<button class="back" onclick="showPage('goal')">← Back</button>
 
-        <h1>What do you already know?</h1>
+<div class="step">STEP 2 OF 5</div>
 
-        <p class="subtitle">
-            Select the skills you already have.
-        </p>
+<h1>What do you already know?</h1>
 
-        <div class="skill-list">
-            <button class="skill" onclick="toggleSkill(this)">Python</button>
-            <button class="skill" onclick="toggleSkill(this)">C / C++</button>
-            <button class="skill" onclick="toggleSkill(this)">Java</button>
-            <button class="skill" onclick="toggleSkill(this)">JavaScript</button>
-            <button class="skill" onclick="toggleSkill(this)">HTML / CSS</button>
-            <button class="skill" onclick="toggleSkill(this)">SQL</button>
-            <button class="skill" onclick="toggleSkill(this)">Git / GitHub</button>
-            <button class="skill" onclick="toggleSkill(this)">Excel</button>
-            <button class="skill" onclick="toggleSkill(this)">Figma</button>
-            <button class="skill" onclick="toggleSkill(this)">Linux</button>
-            <button class="skill" onclick="toggleSkill(this)">None</button>
-        </div>
+<p class="subtitle">Select the skills you already have.</p>
 
-        <div class="next">
-            <button class="primary" onclick="goLevel()">Continue →</button>
-        </div>
+<div class="skill-list">
 
-    </div>
+<button class="skill" onclick="toggleSkill(this)">Python</button>
+<button class="skill" onclick="toggleSkill(this)">C / C++</button>
+<button class="skill" onclick="toggleSkill(this)">Java</button>
+<button class="skill" onclick="toggleSkill(this)">JavaScript</button>
+<button class="skill" onclick="toggleSkill(this)">HTML / CSS</button>
+<button class="skill" onclick="toggleSkill(this)">SQL</button>
+<button class="skill" onclick="toggleSkill(this)">Git / GitHub</button>
+<button class="skill" onclick="toggleSkill(this)">Excel</button>
+<button class="skill" onclick="toggleSkill(this)">Figma</button>
+<button class="skill" onclick="toggleSkill(this)">Linux</button>
+<button class="skill" onclick="toggleSkill(this)">None</button>
+
+</div>
+
+<div class="next">
+<button class="primary" onclick="goLevel()">Continue →</button>
+</div>
+
+</div>
+
 </section>
 
 
 <!-- LEVEL -->
 <section id="level" class="page">
-    <div class="setup">
 
-        <button class="back" onclick="showPage('skills')">← Back</button>
+<div class="setup">
 
-        <div class="step">STEP 3 OF 5</div>
+<button class="back" onclick="showPage('skills')">← Back</button>
 
-        <h1>What's your current level?</h1>
+<div class="step">STEP 3 OF 5</div>
 
-        <p class="subtitle">
-            Choose the level that describes you best.
-        </p>
+<h1>What's your current level?</h1>
 
-        <div class="level-grid">
+<p class="subtitle">Choose the level that describes you best.</p>
 
-            <div class="level" onclick="selectLevel(this,'Beginner')">
-                <span>🌱</span>
-                <h3>Beginner</h3>
-                <p>I'm starting from the basics.</p>
-            </div>
+<div class="level-grid">
 
-            <div class="level" onclick="selectLevel(this,'Intermediate')">
-                <span>⚡</span>
-                <h3>Intermediate</h3>
-                <p>I know the fundamentals.</p>
-            </div>
+<div class="level" onclick="selectLevel(this,'Beginner')">
+<span>🌱</span>
+<h3>Beginner</h3>
+<p>I'm starting from the basics.</p>
+</div>
 
-            <div class="level" onclick="selectLevel(this,'Advanced')">
-                <span>🔥</span>
-                <h3>Advanced</h3>
-                <p>I already have strong knowledge.</p>
-            </div>
+<div class="level" onclick="selectLevel(this,'Intermediate')">
+<span>⚡</span>
+<h3>Intermediate</h3>
+<p>I know the fundamentals.</p>
+</div>
 
-        </div>
+<div class="level" onclick="selectLevel(this,'Advanced')">
+<span>🔥</span>
+<h3>Advanced</h3>
+<p>I already have strong knowledge.</p>
+</div>
 
-        <div class="next">
-            <button class="primary" onclick="goTime()">Continue →</button>
-        </div>
+</div>
 
-    </div>
+<div class="next">
+<button class="primary" onclick="goTime()">Continue →</button>
+</div>
+
+</div>
+
 </section>
 
 
 <!-- TIME -->
 <section id="time" class="page">
-    <div class="setup">
 
-        <button class="back" onclick="showPage('level')">← Back</button>
+<div class="setup">
 
-        <div class="step">STEP 4 OF 5</div>
+<button class="back" onclick="showPage('level')">← Back</button>
 
-        <h1>How much time can you learn?</h1>
+<div class="step">STEP 4 OF 5</div>
 
-        <p class="subtitle">
-            We'll use your available time to plan your roadmap.
-        </p>
+<h1>How much time can you learn?</h1>
 
-        <div class="time-grid">
+<p class="subtitle">We'll use your available time for your roadmap.</p>
 
-            <div class="time" onclick="selectTime(this,'30 min/day')">
-                <span>⏱️</span>
-                <h3>30 min/day</h3>
-                <p>Light learning</p>
-            </div>
+<div class="time-grid">
 
-            <div class="time" onclick="selectTime(this,'1 hour/day')">
-                <span>🔥</span>
-                <h3>1 hour/day</h3>
-                <p>Steady progress</p>
-            </div>
+<div class="time" onclick="selectTime(this,'30 min/day')">
+<span>⏱️</span>
+<h3>30 min/day</h3>
+<p>Light learning</p>
+</div>
 
-            <div class="time" onclick="selectTime(this,'2 hours/day')">
-                <span>🚀</span>
-                <h3>2 hours/day</h3>
-                <p>Fast progress</p>
-            </div>
+<div class="time" onclick="selectTime(this,'1 hour/day')">
+<span>🔥</span>
+<h3>1 hour/day</h3>
+<p>Steady progress</p>
+</div>
 
-            <div class="time" onclick="selectTime(this,'3+ hours/day')">
-                <span>⚡</span>
-                <h3>3+ hours/day</h3>
-                <p>Intensive learning</p>
-            </div>
+<div class="time" onclick="selectTime(this,'2 hours/day')">
+<span>🚀</span>
+<h3>2 hours/day</h3>
+<p>Fast progress</p>
+</div>
 
-        </div>
+<div class="time" onclick="selectTime(this,'3+ hours/day')">
+<span>⚡</span>
+<h3>3+ hours/day</h3>
+<p>Intensive learning</p>
+</div>
 
-        <div class="next">
-            <button class="primary" onclick="goInterests()">Continue →</button>
-        </div>
+</div>
 
-    </div>
+<div class="next">
+<button class="primary" onclick="goInterests()">Continue →</button>
+</div>
+
+</div>
+
 </section>
 
 
 <!-- INTERESTS -->
 <section id="interests" class="page">
-    <div class="setup">
 
-        <button class="back" onclick="showPage('time')">← Back</button>
+<div class="setup">
 
-        <div class="step">STEP 5 OF 5</div>
+<button class="back" onclick="showPage('time')">← Back</button>
 
-        <h1>What are you interested in?</h1>
+<div class="step">STEP 5 OF 5</div>
 
-        <p class="subtitle">
-            Select the things you enjoy learning or building.
-        </p>
+<h1>What are you interested in?</h1>
 
-        <div class="interest-list">
+<p class="subtitle">Select the things you enjoy learning or building.</p>
 
-            <button class="interest" onclick="toggleInterest(this)">
-                🤖 AI & Technology
-            </button>
+<div class="interest-list">
 
-            <button class="interest" onclick="toggleInterest(this)">
-                💻 Coding
-            </button>
+<button class="interest" onclick="toggleInterest(this)">🤖 AI & Technology</button>
+<button class="interest" onclick="toggleInterest(this)">💻 Coding</button>
+<button class="interest" onclick="toggleInterest(this)">📊 Data</button>
+<button class="interest" onclick="toggleInterest(this)">🎨 Design</button>
+<button class="interest" onclick="toggleInterest(this)">🔐 Security</button>
+<button class="interest" onclick="toggleInterest(this)">⚙️ Hardware</button>
+<button class="interest" onclick="toggleInterest(this)">🧠 Problem Solving</button>
+<button class="interest" onclick="toggleInterest(this)">🚀 Building Projects</button>
 
-            <button class="interest" onclick="toggleInterest(this)">
-                📊 Data
-            </button>
+</div>
 
-            <button class="interest" onclick="toggleInterest(this)">
-                🎨 Design
-            </button>
+<div class="next">
+<button class="primary" onclick="finishSetup()">Create My Roadmap 🚀</button>
+</div>
 
-            <button class="interest" onclick="toggleInterest(this)">
-                🔐 Security
-            </button>
+</div>
 
-            <button class="interest" onclick="toggleInterest(this)">
-                ⚙️ Hardware
-            </button>
-
-            <button class="interest" onclick="toggleInterest(this)">
-                🧠 Problem Solving
-            </button>
-
-            <button class="interest" onclick="toggleInterest(this)">
-                🚀 Building Projects
-            </button>
-
-        </div>
-
-        <div class="next">
-            <button class="primary" onclick="finishSetup()">
-                Create My Roadmap 🚀
-            </button>
-        </div>
-
-    </div>
 </section>
 
 
-<!-- RESULT -->
+<!-- PROFILE -->
 <section id="result" class="page">
-    <div class="result">
 
-        <div class="success">✨ YOUR PROFILE IS READY</div>
+<div class="result">
 
-        <h1>Your SkillPilot journey is ready.</h1>
+<div class="success">✨ YOUR PROFILE IS READY</div>
 
-        <p>
-            Your profile has been created. Now let's check your current
-            knowledge level.
-        </p>
+<h1>Your SkillPilot journey is ready.</h1>
 
-        <div class="profile-summary">
+<p>Let's check your current knowledge before building your roadmap.</p>
 
-            <div>
-                <small>GOAL</small>
-                <strong id="resultGoal">—</strong>
-            </div>
+<div class="profile-summary">
 
-            <div>
-                <small>LEVEL</small>
-                <strong id="resultLevel">—</strong>
-            </div>
+<div>
+<small>GOAL</small>
+<strong id="resultGoal">—</strong>
+</div>
 
-            <div>
-                <small>TIME</small>
-                <strong id="resultTime">—</strong>
-            </div>
+<div>
+<small>LEVEL</small>
+<strong id="resultLevel">—</strong>
+</div>
 
-            <div>
-                <small>SKILLS</small>
-                <strong id="resultSkills">—</strong>
-            </div>
+<div>
+<small>TIME</small>
+<strong id="resultTime">—</strong>
+</div>
 
-        </div>
+<div>
+<small>SKILLS</small>
+<strong id="resultSkills">—</strong>
+</div>
 
-        <button class="primary" onclick="startAssessment()">
-            Start Skill Assessment →
-        </button>
+</div>
 
-    </div>
+<button class="primary" onclick="startAssessment()">
+Start Skill Assessment →
+</button>
+
+</div>
+
 </section>
 
 
 <!-- ASSESSMENT -->
 <section id="assessment" class="page">
 
-    <div class="assessment">
+<div class="assessment">
 
-        <div class="assessment-top">
-            <button class="back" onclick="showPage('result')">
-                ← Profile
-            </button>
+<div class="assessment-top">
 
-            <span id="questionCounter">Question 1 of 10</span>
-        </div>
+<button class="back" onclick="showPage('result')">← Profile</button>
 
-        <div class="progress">
-            <div id="progressBar"></div>
-        </div>
+<span id="questionCounter">Question 1 of 10</span>
 
-        <div class="assessment-card">
+</div>
 
-            <div class="assessment-tag">
-                SKILL ASSESSMENT
-            </div>
+<div class="progress">
+<div id="progressBar"></div>
+</div>
 
-            <h1 id="questionText">
-                Question
-            </h1>
+<div class="assessment-card">
 
-            <div id="options" class="options"></div>
+<div class="assessment-tag">SKILL ASSESSMENT</div>
 
-            <div class="assessment-actions">
+<h1 id="questionText">Question</h1>
 
-                <button id="prevBtn"
-                        class="secondary"
-                        onclick="previousQuestion()">
-                    ← Previous
-                </button>
+<div id="options" class="options"></div>
 
-                <button id="nextBtn"
-                        class="primary"
-                        onclick="nextQuestion()">
-                    Next →
-                </button>
+<div class="assessment-actions">
 
-            </div>
+<button id="prevBtn"
+class="secondary"
+onclick="previousQuestion()">← Previous</button>
 
-        </div>
+<button id="nextBtn"
+class="primary"
+onclick="nextQuestion()">Next →</button>
 
-    </div>
+</div>
+
+</div>
+
+</div>
 
 </section>
 
@@ -427,56 +410,55 @@
 <!-- ASSESSMENT RESULT -->
 <section id="assessmentResult" class="page">
 
-    <div class="assessment-result">
+<div class="assessment-result">
 
-        <div class="success">🎉 ASSESSMENT COMPLETE</div>
+<div class="success">🎉 ASSESSMENT COMPLETE</div>
 
-        <h1>Your Skill Analysis</h1>
+<h1>Your Skill Analysis</h1>
 
-        <div class="score-circle">
-            <span id="scoreNumber">0%</span>
-        </div>
+<div class="score-circle">
+<span id="scoreNumber">0%</span>
+</div>
 
-        <h2 id="assessmentLevel">Beginner</h2>
+<h2 id="assessmentLevel">Beginner</h2>
 
-        <p id="assessmentMessage">
-            Your personalized learning path is ready.
-        </p>
+<p id="assessmentMessage"></p>
 
-        <div class="analysis-grid">
+<div class="analysis-grid">
 
-            <div class="analysis-box">
-                <span>✅</span>
-                <strong id="correctCount">0</strong>
-                <small>Correct</small>
-            </div>
+<div class="analysis-box">
+<span>✅</span>
+<strong id="correctCount">0</strong>
+<small>Correct</small>
+</div>
 
-            <div class="analysis-box">
-                <span>❌</span>
-                <strong id="wrongCount">0</strong>
-                <small>Incorrect</small>
-            </div>
+<div class="analysis-box">
+<span>❌</span>
+<strong id="wrongCount">0</strong>
+<small>Incorrect</small>
+</div>
 
-            <div class="analysis-box">
-                <span>🎯</span>
-                <strong id="focusCount">0</strong>
-                <small>Focus Areas</small>
-            </div>
+<div class="analysis-box">
+<span>🎯</span>
+<strong id="focusCount">0</strong>
+<small>Focus Areas</small>
+</div>
 
-        </div>
+</div>
 
-        <div class="weak-area">
-            <h3>📌 Recommended Focus</h3>
-            <p id="weakTopics">
-                Your focus areas will appear here.
-            </p>
-        </div>
+<div class="weak-area">
 
-        <button class="primary" onclick="showRoadmap()">
-            View My Roadmap →
-        </button>
+<h3>📌 Recommended Focus</h3>
 
-    </div>
+<p id="weakTopics"></p>
+
+</div>
+
+<button class="primary" onclick="showRoadmap()">
+View My Roadmap →
+</button>
+
+</div>
 
 </section>
 
@@ -484,35 +466,204 @@
 <!-- ROADMAP -->
 <section id="roadmap" class="page">
 
-    <div class="roadmap">
+<div class="roadmap">
 
-        <div class="success">🗺️ PERSONALIZED ROADMAP</div>
+<div class="roadmap-heading">
 
-        <h1 id="roadmapTitle">
-            Your Learning Roadmap
-        </h1>
+<div>
+<div class="success">🗺️ PERSONALIZED ROADMAP</div>
 
-        <p id="roadmapSubtitle">
-            Based on your assessment.
-        </p>
+<h1 id="roadmapTitle">Your Learning Roadmap</h1>
 
-        <div id="roadmapList" class="roadmap-list"></div>
+<p id="roadmapSubtitle"></p>
+</div>
 
-        <button class="primary" onclick="showPage('home')">
-            Back to SkillPilot
-        </button>
+<button class="dashboard-btn"
+onclick="showPage('dashboard')">
+📊 Dashboard
+</button>
 
-    </div>
+</div>
+
+<div id="roadmapList" class="roadmap-list"></div>
+
+</div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page">
+
+<div class="dashboard">
+
+<div class="dashboard-heading">
+
+<div>
+<div class="success">📊 YOUR LEARNING HUB</div>
+<h1>Welcome to SkillPilot</h1>
+<p id="dashboardGoal">Complete your setup to begin.</p>
+</div>
+
+<button class="primary small-btn" onclick="showPage('roadmap')">
+View Roadmap →
+</button>
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="stats-grid">
+
+<div class="stat-card">
+<span>⭐</span>
+<small>XP</small>
+<strong id="xpValue">0</strong>
+</div>
+
+<div class="stat-card">
+<span>🔥</span>
+<small>STREAK</small>
+<strong id="streakValue">1 day</strong>
+</div>
+
+<div class="stat-card">
+<span>📈</span>
+<small>PROGRESS</small>
+<strong id="progressValue">0%</strong>
+</div>
+
+<div class="stat-card">
+<span>🏆</span>
+<small>BADGES</small>
+<strong id="badgeValue">0</strong>
+</div>
+
+</div>
+
+
+<!-- DAILY MISSION -->
+
+<div class="dashboard-section">
+
+<div class="section-title">
+
+<div>
+<h2>🎯 What Should I Learn Today?</h2>
+<p>Your recommended daily mission.</p>
+</div>
+
+<span class="mission-xp">+50 XP</span>
+
+</div>
+
+<div class="mission">
+
+<div class="mission-icon">🚀</div>
+
+<div class="mission-content">
+
+<h3 id="missionTitle">Start your learning journey</h3>
+
+<p id="missionDescription">
+Complete your assessment to unlock your first daily mission.
+</p>
+
+<div class="mission-meta">
+<span>⏱️ <b id="missionTime">15 min</b></span>
+<span>🎯 Skill Practice</span>
+</div>
+
+</div>
+
+<button class="primary mission-btn"
+onclick="completeMission()">
+Complete
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PROGRESS -->
+
+<div class="dashboard-section">
+
+<div class="section-title">
+
+<div>
+<h2>📈 Learning Progress</h2>
+<p>Track your roadmap completion.</p>
+</div>
+
+<strong id="progressPercent">0%</strong>
+
+</div>
+
+<div class="big-progress">
+<div id="dashboardProgress"></div>
+</div>
+
+</div>
+
+
+<!-- ACHIEVEMENTS -->
+
+<div class="dashboard-section">
+
+<div class="section-title">
+
+<div>
+<h2>🏆 Achievements</h2>
+<p>Keep learning to unlock badges.</p>
+</div>
+
+</div>
+
+<div class="badges">
+
+<div class="badge-card" id="badgeFirst">
+<span>🌱</span>
+<strong>First Step</strong>
+<small>Complete your first skill</small>
+</div>
+
+<div class="badge-card">
+<span>🎯</span>
+<strong>Focused Learner</strong>
+<small>Complete 3 skills</small>
+</div>
+
+<div class="badge-card">
+<span>🔥</span>
+<strong>On Fire</strong>
+<small>Build a learning streak</small>
+</div>
+
+<div class="badge-card">
+<span>🏆</span>
+<strong>Roadmap Hero</strong>
+<small>Complete your roadmap</small>
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 </main>
 
+
 <footer>
-    © 2026 SkillPilot · Learn smarter. Build skills. Reach your goal.
+© 2026 SkillPilot · Learn smarter. Build skills. Reach your goal.
 </footer>
 
 <script src="script.js"></script>
 
 </body>
-                                                                     </html>
+    </html>
