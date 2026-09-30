@@ -1,599 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SkillPilot</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial, sans-serif;
-    background:#07111f;
-    color:#fff;
-    min-height:100vh;
-}
-
-button{
-    font-family:inherit;
-}
-
-/* NAVBAR */
-.navbar{
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 7%;
-    border-bottom:1px solid #17263a;
-}
-
-.logo{
-    font-size:23px;
-    font-weight:bold;
-}
-
-.logo span{
-    color:#6d9cff;
-}
-
-.nav-btn{
-    background:#101d30;
-    color:white;
-    border:1px solid #29405e;
-    padding:9px 17px;
-    border-radius:9px;
-}
-
-/* COMMON */
-.page{
-    display:none;
-    min-height:calc(100vh - 70px);
-}
-
-.page.active{
-    display:block;
-}
-
-/* HOME */
-.hero{
-    max-width:1000px;
-    margin:auto;
-    padding:80px 20px;
-    text-align:center;
-}
-
-.badge{
-    display:inline-block;
-    padding:8px 15px;
-    background:#10213b;
-    border:1px solid #29436b;
-    color:#80aaff;
-    border-radius:30px;
-    font-size:13px;
-    margin-bottom:22px;
-}
-
-.hero h1{
-    font-size:clamp(42px,8vw,75px);
-    line-height:1.05;
-    margin-bottom:22px;
-}
-
-.hero h1 span{
-    color:#6d9cff;
-}
-
-.hero p{
-    max-width:620px;
-    margin:auto;
-    color:#9baabd;
-    line-height:1.7;
-    font-size:16px;
-}
-
-.primary-btn{
-    margin-top:30px;
-    padding:15px 27px;
-    border:none;
-    border-radius:12px;
-    background:#5b8cff;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.primary-btn:hover{
-    opacity:.9;
-}
-
-/* FEATURES */
-.features{
-    max-width:1000px;
-    margin:0 auto 70px;
-    padding:20px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-
-.card{
-    background:#0d1a2c;
-    border:1px solid #1d314c;
-    border-radius:16px;
-    padding:22px;
-}
-
-.card-icon{
-    font-size:25px;
-    margin-bottom:14px;
-}
-
-.card h3{
-    margin-bottom:8px;
-}
-
-.card p{
-    color:#8d9bb0;
-    font-size:13px;
-    line-height:1.5;
-}
-
-/* SETUP PAGES */
-.setup{
-    max-width:850px;
-    margin:auto;
-    padding:45px 20px;
-}
-
-.back{
-    background:none;
-    border:none;
-    color:#91a5c1;
-    cursor:pointer;
-    margin-bottom:25px;
-    font-size:14px;
-}
-
-.step{
-    color:#6d9cff;
-    font-size:13px;
-    margin-bottom:10px;
-}
-
-.setup h1{
-    font-size:36px;
-    margin-bottom:10px;
-}
-
-.setup-subtitle{
-    color:#8999ae;
-    margin-bottom:30px;
-}
-
-/* GOALS */
-.goal-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
-}
-
-.goal{
-    background:#0d1a2c;
-    border:1px solid #1e334f;
-    border-radius:15px;
-    padding:20px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.goal:hover{
-    border-color:#5b8cff;
-    transform:translateY(-2px);
-}
-
-.goal.selected{
-    border-color:#6d9cff;
-    background:#122541;
-}
-
-.goal-icon{
-    font-size:28px;
-    margin-bottom:12px;
-}
-
-.goal h3{
-    margin-bottom:6px;
-}
-
-.goal p{
-    color:#8292a8;
-    font-size:13px;
-}
-
-/* SKILLS */
-.skill-box{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-}
-
-.skill{
-    padding:12px 17px;
-    background:#0d1a2c;
-    border:1px solid #263d5b;
-    border-radius:10px;
-    color:#c7d1df;
-    cursor:pointer;
-}
-
-.skill.selected{
-    background:#162e50;
-    border-color:#6d9cff;
-    color:white;
-}
-
-.custom-input{
-    width:100%;
-    margin-top:20px;
-    padding:14px;
-    background:#0d1a2c;
-    color:white;
-    border:1px solid #263d5b;
-    border-radius:10px;
-    outline:none;
-}
-
-.continue-area{
-    text-align:right;
-    margin-top:30px;
-}
-
-/* MOBILE */
-@media(max-width:700px){
-
-    .navbar{
-        padding:0 20px;
-    }
-
-    .hero{
-        padding:65px 20px;
-    }
-
-    .hero h1{
-        font-size:43px;
-    }
-
-    .features{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .goal-grid{
-        grid-template-columns:1fr;
-    }
-
-    .setup h1{
-        font-size:30px;
-    }
-}
-
-@media(max-width:430px){
-
-    .features{
-        grid-template-columns:1fr;
-    }
-
-    .nav-btn{
-        display:none;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillPilot</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
+<header class="navbar">
     <div class="logo">Skill<span>Pilot</span></div>
-    <button class="nav-btn">Sign In</button>
-</nav>
+    <button class="signin">Sign In</button>
+</header>
 
+<main>
 
-<!-- ================= HOME ================= -->
-
+<!-- HOME -->
 <section id="home" class="page active">
-
     <div class="hero">
+        <div class="badge">🚀 Personalized Learning Platform</div>
 
-        <div class="badge">
-            🚀 Personalized Learning Platform
-        </div>
-
-        <h1>
-            What should<br>
-            <span>I learn next?</span>
-        </h1>
+        <h1>What should<br><span>I learn next?</span></h1>
 
         <p>
-            Tell SkillPilot your goal, current skills and interests.
-            We'll create a personalized roadmap to help you reach your career goal.
+            Tell SkillPilot your goal, current skills, interests and available
+            time. We'll create a personalized learning roadmap for you.
         </p>
 
-        <button class="primary-btn" onclick="showPage('goal')">
+        <button class="primary" onclick="showPage('goal')">
             Build My Roadmap →
         </button>
-
     </div>
 
     <div class="features">
 
         <div class="card">
-            <div class="card-icon">🎯</div>
+            <div>🎯</div>
             <h3>Personalized</h3>
-            <p>Your roadmap is created around your goals and current level.</p>
+            <p>Learning based on your goals and current skills.</p>
         </div>
 
         <div class="card">
-            <div class="card-icon">🗺️</div>
+            <div>🗺️</div>
             <h3>Smart Roadmap</h3>
             <p>Know exactly what to learn next.</p>
         </div>
 
         <div class="card">
-            <div class="card-icon">🧪</div>
+            <div>🧪</div>
             <h3>Practice</h3>
-            <p>Practice concepts and build real projects.</p>
+            <p>Practice skills and build real projects.</p>
         </div>
 
         <div class="card">
-            <div class="card-icon">🏆</div>
+            <div>🏆</div>
             <h3>Track Progress</h3>
-            <p>Track your skills, projects and learning progress.</p>
+            <p>Track your learning journey and achievements.</p>
         </div>
 
     </div>
-
 </section>
 
 
-<!-- ================= GOAL ================= -->
-
+<!-- GOAL -->
 <section id="goal" class="page">
 
     <div class="setup">
 
-        <button class="back" onclick="showPage('home')">
-            ← Back
-        </button>
+        <button class="back" onclick="showPage('home')">← Back</button>
 
         <div class="step">STEP 1 OF 5</div>
 
         <h1>What do you want to become?</h1>
 
-        <p class="setup-subtitle">
-            Choose a career goal. We'll build your learning path around it.
+        <p class="subtitle">
+            Choose your career goal.
         </p>
 
         <div class="goal-grid">
 
             <div class="goal" onclick="selectGoal(this,'AI / ML')">
-                <div class="goal-icon">🤖</div>
+                <span>🤖</span>
                 <h3>AI / ML</h3>
                 <p>Artificial Intelligence & Machine Learning</p>
             </div>
 
             <div class="goal" onclick="selectGoal(this,'Data Science')">
-                <div class="goal-icon">📊</div>
+                <span>📊</span>
                 <h3>Data Science</h3>
-                <p>Data analysis, statistics & insights</p>
+                <p>Data analysis and statistics</p>
             </div>
 
             <div class="goal" onclick="selectGoal(this,'Cybersecurity')">
-                <div class="goal-icon">🛡️</div>
+                <span>🛡️</span>
                 <h3>Cybersecurity</h3>
-                <p>Security, networks & ethical hacking</p>
+                <p>Security and ethical hacking</p>
             </div>
 
             <div class="goal" onclick="selectGoal(this,'Web Development')">
-                <div class="goal-icon">🌐</div>
+                <span>🌐</span>
                 <h3>Web Development</h3>
                 <p>Frontend, backend & full-stack</p>
             </div>
 
             <div class="goal" onclick="selectGoal(this,'UI / UX')">
-                <div class="goal-icon">🎨</div>
+                <span>🎨</span>
                 <h3>UI / UX</h3>
-                <p>Design, research & user experience</p>
+                <p>Design and user experience</p>
             </div>
 
             <div class="goal" onclick="selectGoal(this,'Electronics')">
-                <div class="goal-icon">⚡</div>
+                <span>⚡</span>
                 <h3>Electronics</h3>
-                <p>Circuits, embedded systems & hardware</p>
+                <p>Hardware and embedded systems</p>
             </div>
 
             <div class="goal" onclick="selectGoal(this,'Programming')">
-                <div class="goal-icon">💻</div>
+                <span>💻</span>
                 <h3>Programming</h3>
-                <p>Build strong programming fundamentals</p>
+                <p>Programming fundamentals</p>
             </div>
 
             <div class="goal" onclick="selectGoal(this,'Other')">
-                <div class="goal-icon">✨</div>
+                <span>✨</span>
                 <h3>Other</h3>
-                <p>Create your own custom goal</p>
+                <p>Choose your own goal</p>
             </div>
 
         </div>
 
-        <input
-            id="customGoal"
-            class="custom-input"
-            placeholder="If you selected Other, type your goal..."
-            style="display:none;"
-        >
+        <input id="customGoal"
+               class="input"
+               placeholder="Enter your custom goal..."
+               style="display:none;">
 
-        <div class="continue-area">
-            <button class="primary-btn" onclick="goToSkills()">
+        <div class="next">
+            <button class="primary" onclick="goSkills()">
                 Continue →
             </button>
         </div>
 
     </div>
-
 </section>
 
 
-<!-- ================= SKILLS ================= -->
-
+<!-- SKILLS -->
 <section id="skills" class="page">
 
     <div class="setup">
 
-        <button class="back" onclick="showPage('goal')">
-            ← Back
-        </button>
+        <button class="back" onclick="showPage('goal')">← Back</button>
 
         <div class="step">STEP 2 OF 5</div>
 
         <h1>What do you already know?</h1>
 
-        <p class="setup-subtitle">
-            Select the skills you already have. Don't worry if you're starting from zero.
+        <p class="subtitle">
+            Select the skills you already have.
         </p>
 
-        <div class="skill-box">
+        <div class="skill-list">
 
-            <div class="skill" onclick="toggleSkill(this)">Python</div>
-            <div class="skill" onclick="toggleSkill(this)">C / C++</div>
-            <div class="skill" onclick="toggleSkill(this)">Java</div>
-            <div class="skill" onclick="toggleSkill(this)">JavaScript</div>
-            <div class="skill" onclick="toggleSkill(this)">HTML / CSS</div>
-            <div class="skill" onclick="toggleSkill(this)">SQL</div>
-            <div class="skill" onclick="toggleSkill(this)">Git / GitHub</div>
-            <div class="skill" onclick="toggleSkill(this)">Excel</div>
-            <div class="skill" onclick="toggleSkill(this)">Figma</div>
-            <div class="skill" onclick="toggleSkill(this)">Linux</div>
-            <div class="skill" onclick="toggleSkill(this)">None</div>
+            <button class="skill" onclick="toggleSkill(this)">Python</button>
+            <button class="skill" onclick="toggleSkill(this)">C / C++</button>
+            <button class="skill" onclick="toggleSkill(this)">Java</button>
+            <button class="skill" onclick="toggleSkill(this)">JavaScript</button>
+            <button class="skill" onclick="toggleSkill(this)">HTML / CSS</button>
+            <button class="skill" onclick="toggleSkill(this)">SQL</button>
+            <button class="skill" onclick="toggleSkill(this)">Git / GitHub</button>
+            <button class="skill" onclick="toggleSkill(this)">Excel</button>
+            <button class="skill" onclick="toggleSkill(this)">Figma</button>
+            <button class="skill" onclick="toggleSkill(this)">Linux</button>
+            <button class="skill" onclick="toggleSkill(this)">None</button>
 
         </div>
 
-        <div class="continue-area">
-            <button class="primary-btn" onclick="finishSkills()">
+        <div class="next">
+            <button class="primary" onclick="goLevel()">
                 Continue →
             </button>
         </div>
 
     </div>
-
 </section>
 
 
-<script>
+<!-- LEVEL -->
+<section id="level" class="page">
 
-let selectedGoal = "";
-let selectedSkills = [];
+    <div class="setup">
 
+        <button class="back" onclick="showPage('skills')">← Back</button>
 
-function showPage(page){
+        <div class="step">STEP 3 OF 5</div>
 
-    document.querySelectorAll(".page").forEach(function(section){
-        section.classList.remove("active");
-    });
+        <h1>What's your current level?</h1>
 
-    document.getElementById(page).classList.add("active");
+        <p class="subtitle">
+            Choose the level that describes you best.
+        </p>
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-}
+        <div class="level-grid">
 
+            <div class="level" onclick="selectLevel(this,'Beginner')">
+                <span>🌱</span>
+                <h3>Beginner</h3>
+                <p>I'm starting from the basics.</p>
+            </div>
 
-function selectGoal(element, goal){
+            <div class="level" onclick="selectLevel(this,'Intermediate')">
+                <span>⚡</span>
+                <h3>Intermediate</h3>
+                <p>I know the fundamentals and have some practice.</p>
+            </div>
 
-    document.querySelectorAll(".goal").forEach(function(item){
-        item.classList.remove("selected");
-    });
+            <div class="level" onclick="selectLevel(this,'Advanced')">
+                <span>🔥</span>
+                <h3>Advanced</h3>
+                <p>I already have strong knowledge and experience.</p>
+            </div>
 
-    element.classList.add("selected");
+        </div>
 
-    selectedGoal = goal;
+        <div class="next">
+            <button class="primary" onclick="goTime()">
+                Continue →
+            </button>
+        </div>
 
-    if(goal === "Other"){
-        document.getElementById("customGoal").style.display = "block";
-    }else{
-        document.getElementById("customGoal").style.display = "none";
-    }
-}
-
-
-function goToSkills(){
-
-    if(selectedGoal === ""){
-
-        alert("Please select your career goal first.");
-
-        return;
-    }
-
-    if(selectedGoal === "Other"){
-
-        let custom = document.getElementById("customGoal").value.trim();
-
-        if(custom === ""){
-            alert("Please enter your custom goal.");
-            return;
-        }
-
-        selectedGoal = custom;
-    }
-
-    showPage("skills");
-}
+    </div>
+</section>
 
 
-function toggleSkill(element){
+<!-- TIME -->
+<section id="time" class="page">
 
-    let skill = element.innerText;
+    <div class="setup">
 
-    element.classList.toggle("selected");
+        <button class="back" onclick="showPage('level')">← Back</button>
 
-    if(element.classList.contains("selected")){
+        <div class="step">STEP 4 OF 5</div>
 
-        if(!selectedSkills.includes(skill)){
-            selectedSkills.push(skill);
-        }
+        <h1>How much time can you learn?</h1>
 
-    }else{
+        <p class="subtitle">
+            We'll use your available time to plan your roadmap.
+        </p>
 
-        selectedSkills = selectedSkills.filter(function(item){
-            return item !== skill;
-        });
+        <div class="time-grid">
 
-    }
-}
+            <div class="time" onclick="selectTime(this,'30 min/day')">
+                <span>⏱️</span>
+                <h3>30 min/day</h3>
+                <p>Light learning</p>
+            </div>
+
+            <div class="time" onclick="selectTime(this,'1 hour/day')">
+                <span>🔥</span>
+                <h3>1 hour/day</h3>
+                <p>Steady progress</p>
+            </div>
+
+            <div class="time" onclick="selectTime(this,'2 hours/day')">
+                <span>🚀</span>
+                <h3>2 hours/day</h3>
+                <p>Fast progress</p>
+            </div>
+
+            <div class="time" onclick="selectTime(this,'3+ hours/day')">
+                <span>⚡</span>
+                <h3>3+ hours/day</h3>
+                <p>Intensive learning</p>
+            </div>
+
+        </div>
+
+        <div class="next">
+            <button class="primary" onclick="goInterests()">
+                Continue →
+            </button>
+        </div>
+
+    </div>
+</section>
 
 
-function finishSkills(){
+<!-- INTERESTS -->
+<section id="interests" class="page">
 
-    alert(
-        "Great! 🚀\n\n" +
-        "Goal: " + selectedGoal + "\n" +
-        "Skills selected: " + selectedSkills.length + "\n\n" +
-        "Next: Level & Learning Time"
-    );
+    <div class="setup">
 
-}
+        <button class="back" onclick="showPage('time')">← Back</button>
 
-</script>
+        <div class="step">STEP 5 OF 5</div>
+
+        <h1>What are you interested in?</h1>
+
+        <p class="subtitle">
+            Select the things you enjoy learning or building.
+        </p>
+
+        <div class="interest-list">
+
+            <button class="interest" onclick="toggleInterest(this)">
+                🤖 AI & Technology
+            </button>
+
+            <button class="interest" onclick="toggleInterest(this)">
+                💻 Coding
+            </button>
+
+            <button class="interest" onclick="toggleInterest(this)">
+                📊 Data
+            </button>
+
+            <button class="interest" onclick="toggleInterest(this)">
+                🎨 Design
+            </button>
+
+            <button class="interest" onclick="toggleInterest(this)">
+                🔐 Security
+            </button>
+
+            <button class="interest" onclick="toggleInterest(this)">
+                ⚙️ Hardware
+            </button>
+
+            <button class="interest" onclick="toggleInterest(this)">
+                🧠 Problem Solving
+            </button>
+
+            <button class="interest" onclick="toggleInterest(this)">
+                🚀 Building Projects
+            </button>
+
+        </div>
+
+        <div class="next">
+            <button class="primary" onclick="finishSetup()">
+                Create My Roadmap 🚀
+            </button>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- RESULT -->
+<section id="result" class="page">
+
+    <div class="result">
+
+        <div class="success">✨ YOUR PROFILE IS READY</div>
+
+        <h1>Your SkillPilot journey is ready.</h1>
+
+        <p>
+            We've collected your preferences. Your personalized roadmap
+            can now be generated.
+        </p>
+
+        <div class="profile-summary">
+
+            <div>
+                <small>GOAL</small>
+                <strong id="resultGoal">—</strong>
+            </div>
+
+            <div>
+                <small>LEVEL</small>
+                <strong id="resultLevel">—</strong>
+            </div>
+
+            <div>
+                <small>TIME</small>
+                <strong id="resultTime">—</strong>
+            </div>
+
+            <div>
+                <small>SKILLS</small>
+                <strong id="resultSkills">—</strong>
+            </div>
+
+        </div>
+
+        <button class="primary" onclick="alert('Assessment module coming next! 🚀')">
+            Start Skill Assessment →
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    © 2026 SkillPilot · Learn smarter. Build skills. Reach your goal.
+</footer>
+
+<script src="script.js"></script>
 
 </body>
-                </html>
+</html>
