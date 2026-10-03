@@ -3,660 +3,644 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SkillPilot</title>
+<title>SkillPilot — Your Skills. Your Future.</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="navbar">
-    <div class="logo">Skill<span>Pilot</span></div>
+<header class="topbar">
+    <div class="brand">
+        <div class="brand-icon">✦</div>
+        <div>
+            <strong>SkillPilot</strong>
+            <small>Your Skills. Your Future.</small>
+        </div>
+    </div>
 
-    <nav>
-        <button onclick="showPage('home')">Home</button>
-        <button onclick="showPage('dashboard')">Dashboard</button>
-        <button onclick="showPage('roadmap')">Roadmap</button>
-    </nav>
+    <div class="search">
+        🔍
+        <input type="text" placeholder="Search skills, resources, projects, or anything...">
+    </div>
 
-    <button class="signin">Sign In</button>
+    <div class="top-actions">
+        <button>🔔</button>
+        <button>☼</button>
+        <div class="profile-mini">
+            <div class="avatar">A</div>
+            <div>
+                <b>Aarav Patil</b>
+                <small>Student</small>
+            </div>
+        </div>
+    </div>
 </header>
+
+<div class="app">
+
+<aside class="sidebar">
+
+    <button class="side-link active" onclick="showPage('home')">
+        🏠 <span>Home</span>
+    </button>
+
+    <button class="side-link" onclick="showPage('profile')">
+        👤 <span>Profile</span>
+    </button>
+
+    <button class="side-link" onclick="showPage('assessment')">
+        ☑ <span>Assessment</span>
+    </button>
+
+    <button class="side-link" onclick="showPage('roadmap')">
+        ◈ <span>Roadmap</span>
+    </button>
+
+    <button class="side-link" onclick="showPage('skillsPage')">
+        ◇ <span>Skills</span>
+    </button>
+
+    <button class="side-link">
+        ▣ <span>Resources</span>
+    </button>
+
+    <button class="side-link">
+        ⚒ <span>Practice</span>
+    </button>
+
+    <button class="side-link">
+        💼 <span>Projects</span>
+    </button>
+
+    <button class="side-link">
+        ▣ <span>Planner</span>
+    </button>
+
+    <button class="side-link" onclick="showPage('dashboard')">
+        ◉ <span>Dashboard</span>
+    </button>
+
+    <button class="side-link">
+        🚀 <span>Career</span>
+    </button>
+
+    <button class="side-link">
+        ◫ <span>Portfolio</span>
+    </button>
+
+    <button class="side-link">
+        ☆ <span>Achievements</span>
+    </button>
+
+    <div class="sidebar-bottom">
+        <div class="rocket">🚀</div>
+        <h3>Small steps<br>every day lead to<br>big results!</h3>
+
+        <div class="xp-bar">
+            <div id="sideXPBar"></div>
+        </div>
+
+        <small>Level 3 · Explorer</small>
+        <b id="sideXP">320 / 500 XP</b>
+    </div>
+
+</aside>
+
 
 <main>
 
 <!-- HOME -->
 <section id="home" class="page active">
 
-    <div class="hero">
+    <div class="dashboard-wrap">
 
-        <div class="badge">🚀 Personalized Learning Platform</div>
+        <div class="welcome-row">
+            <div>
+                <h1>Good Morning, Aarav! 👋</h1>
+                <p>Keep going! You're one step closer to your goals.</p>
+            </div>
 
-        <h1>What should<br><span>I learn next?</span></h1>
+            <div class="quote">
+                “The best way to predict<br>
+                your future is to create it.”
+                <small>— Abraham Lincoln</small>
+            </div>
+        </div>
 
-        <p>
-            SkillPilot creates a personalized learning journey based on
-            your goal, skills, level and available time.
-        </p>
 
-        <button class="primary" onclick="showPage('goal')">
-            Build My Roadmap →
-        </button>
+        <div class="main-grid">
 
+            <div class="content">
+
+                <!-- MISSION -->
+                <div class="mission-card">
+
+                    <div class="mission-content">
+                        <span class="eyebrow">🎯 Today's Mission</span>
+
+                        <h2 id="missionTitle">
+                            Learn: Pandas DataFrame
+                        </h2>
+
+                        <div class="mission-info">
+                            <div>◷ <span>Estimated time<br><b id="missionTime">35 min</b></span></div>
+                            <div>‹/› <span>Practice<br><b>3 questions</b></span></div>
+                            <div>▤ <span>Mini task<br><b>Analyze a CSV file</b></span></div>
+                            <div>⭐ <span>XP<br><b>+50</b></span></div>
+                        </div>
+
+                        <button class="primary" onclick="completeMission()">
+                            Start Learning →
+                        </button>
+                    </div>
+
+                    <div class="mission-art">
+                        <div class="python">🐍</div>
+                        <div class="student-art">👨‍💻</div>
+                        <div class="chart-art">📊</div>
+                    </div>
+
+                </div>
+
+
+                <!-- ROADMAP -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <span class="panel-icon">🗺️</span>
+                            <b>Your Personalized Roadmap</b>
+                        </div>
+
+                        <button onclick="showPage('roadmap')">View All →</button>
+                    </div>
+
+                    <div class="mini-roadmap">
+
+                        <div class="road-step completed">
+                            <div class="circle">✓</div>
+                            <b>Python</b>
+                            <small>✓ Completed</small>
+                        </div>
+
+                        <i>→</i>
+
+                        <div class="road-step completed">
+                            <div class="circle">✓</div>
+                            <b>NumPy</b>
+                            <small>✓ Completed</small>
+                        </div>
+
+                        <i>→</i>
+
+                        <div class="road-step current">
+                            <div class="circle">➤</div>
+                            <b>Pandas</b>
+                            <small>• In Progress</small>
+                        </div>
+
+                        <i>→</i>
+
+                        <div class="road-step locked">
+                            <div class="circle">🔒</div>
+                            <b>Statistics</b>
+                            <small>Locked</small>
+                        </div>
+
+                        <i>→</i>
+
+                        <div class="road-step locked">
+                            <div class="circle">🔒</div>
+                            <b>Machine Learning</b>
+                            <small>Locked</small>
+                        </div>
+
+                        <i>→</i>
+
+                        <div class="road-step locked">
+                            <div class="circle">🔒</div>
+                            <b>Projects</b>
+                            <small>Locked</small>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="two-column">
+
+                    <!-- SKILL GAP -->
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <b>🎯 Skill Gap Analysis</b>
+                            <button>Details →</button>
+                        </div>
+
+                        <div class="gap-grid">
+
+                            <div>
+                                <span class="big-icon">🎯</span>
+                                <small>Your Goal</small>
+                                <strong>AI / ML</strong>
+                            </div>
+
+                            <div>
+                                <span class="big-icon">🟢</span>
+                                <small>You Know</small>
+                                <strong>Python, C</strong>
+                            </div>
+
+                            <div>
+                                <span class="big-icon">🚨</span>
+                                <small>Missing</small>
+                                <strong>Statistics,<br>Pandas, ML</strong>
+                            </div>
+
+                        </div>
+
+                        <button class="primary small">
+                            View Detailed Analysis →
+                        </button>
+                    </div>
+
+
+                    <!-- PROJECT -->
+                    <div class="panel">
+
+                        <div class="panel-heading">
+                            <b>🚀 Recommended Projects</b>
+                            <button>View All →</button>
+                        </div>
+
+                        <div class="project-card">
+
+                            <div class="project-icon">▦</div>
+
+                            <div>
+                                <h3>Student Performance Analyzer</h3>
+
+                                <div class="tags">
+                                    <span>Python</span>
+                                    <span>Pandas</span>
+                                    <span>Matplotlib</span>
+                                    <span>+1</span>
+                                </div>
+
+                                <p>
+                                    Analyze student data and find insights
+                                    using Python and Pandas.
+                                </p>
+
+                                <small>Difficulty: <b>Medium</b> · Est. Time: 2-3 weeks</small>
+
+                                <br>
+
+                                <button class="primary tiny">
+                                    View Project →
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="two-column">
+
+                    <!-- SKILLS -->
+                    <div class="panel">
+
+                        <div class="panel-heading">
+                            <b>📚 Your Skills</b>
+                            <button>View All →</button>
+                        </div>
+
+                        <div class="skill-cards">
+
+                            <div class="user-skill">
+                                <span>✓</span>
+                                Python
+                                <small>Advanced</small>
+                            </div>
+
+                            <div class="user-skill">
+                                <span>✓</span>
+                                C
+                                <small>Intermediate</small>
+                            </div>
+
+                            <div class="user-skill">
+                                <span>✓</span>
+                                HTML & CSS
+                                <small>Intermediate</small>
+                            </div>
+
+                            <div class="user-skill beginner">
+                                <span>◉</span>
+                                JavaScript
+                                <small>Beginner</small>
+                            </div>
+
+                        </div>
+
+                        <div class="more-skills">+14 more skills</div>
+
+                    </div>
+
+
+                    <!-- GAMIFICATION -->
+                    <div class="panel">
+
+                        <div class="panel-heading">
+                            <b>🏆 Gamification</b>
+                            <button>View All →</button>
+                        </div>
+
+                        <div class="game-grid">
+
+                            <div>
+                                <span>◉</span>
+                                <b>Level 3</b>
+                                <small>Explorer</small>
+                            </div>
+
+                            <div>
+                                <span>🔥</span>
+                                <b id="gameStreak">5 Day</b>
+                                <small>Streak</small>
+                            </div>
+
+                            <div>
+                                <span>🏅</span>
+                                <b id="badgeValue">2</b>
+                                <small>Badges</small>
+                            </div>
+
+                        </div>
+
+                        <div class="level-progress">
+                            <div id="levelProgress"></div>
+                        </div>
+
+                        <small class="xp-text">
+                            <span id="currentXP">320</span> / 500 XP
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CAREER PATHS -->
+                <div class="panel career-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <b>🧭 Career Paths</b>
+                            <small>Explore different career options with your skills.</small>
+                        </div>
+
+                        <button>View All →</button>
+                    </div>
+
+                    <div class="career-grid">
+
+                        <div class="career ai">
+                            <span>◈</span>
+                            <b>AI / ML</b>
+                            <small>Data Scientist, ML Engineer</small>
+                            <button>View Path →</button>
+                        </div>
+
+                        <div class="career web">
+                            <span>▣</span>
+                            <b>Web Development</b>
+                            <small>Frontend, Backend, Full Stack</small>
+                            <button>View Path →</button>
+                        </div>
+
+                        <div class="career cyber">
+                            <span>⬢</span>
+                            <b>Cybersecurity</b>
+                            <small>Security Analyst, Ethical Hacker</small>
+                            <button>View Path →</button>
+                        </div>
+
+                        <div class="career data">
+                            <span>▥</span>
+                            <b>Data Analytics</b>
+                            <small>Data Analyst, Business Analyst</small>
+                            <button>View Path →</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT COLUMN -->
+            <aside class="right-column">
+
+                <!-- PROGRESS -->
+                <div class="panel progress-panel">
+
+                    <h2>Your Progress</h2>
+
+                    <div class="progress-ring">
+                        <div>
+                            <b id="progressValue">42%</b>
+                            <small>Overall Completion</small>
+                        </div>
+                    </div>
+
+                    <div class="progress-stat">
+                        <span>⚙️ Skills Completed</span>
+                        <b>8 / 19</b>
+                    </div>
+
+                    <div class="progress-stat">
+                        <span>💎 Projects Completed</span>
+                        <b>2 / 5</b>
+                    </div>
+
+                    <div class="progress-stat">
+                        <span>🔥 Learning Streak</span>
+                        <b id="streakValue">5 days</b>
+                    </div>
+
+                    <div class="progress-stat">
+                        <span>◷ Study Hours</span>
+                        <b>24.5 hrs</b>
+                    </div>
+
+                </div>
+
+
+                <!-- TODAY PLAN -->
+                <div class="panel">
+
+                    <div class="panel-heading">
+                        <b>Today's Plan</b>
+                        <button>View Calendar →</button>
+                    </div>
+
+                    <label class="check-item checked">
+                        <input type="checkbox" checked>
+                        <span>Pandas DataFrame <small>(35 min)</small></span>
+                    </label>
+
+                    <label class="check-item">
+                        <input type="checkbox">
+                        <span>Practice Questions <small>(20 min)</small></span>
+                    </label>
+
+                    <label class="check-item">
+                        <input type="checkbox">
+                        <span>Mini Project <small>(45 min)</small></span>
+                    </label>
+
+                    <label class="check-item">
+                        <input type="checkbox">
+                        <span>Update Portfolio <small>(15 min)</small></span>
+                    </label>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+                <div class="panel">
+
+                    <div class="panel-heading">
+                        <b>⚡ Quick Actions</b>
+                    </div>
+
+                    <div class="quick-grid">
+
+                        <button>⚒<span>Start<br>Practice</span></button>
+                        <button>▣<span>Explore<br>Resources</span></button>
+                        <button>⚙<span>Ask AI<br>Assistant</span></button>
+                        <button>🔔<span>Set<br>Reminder</span></button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- JOURNEY -->
+                <div class="panel">
+
+                    <div class="panel-heading">
+                        <b>Your Journey</b>
+                    </div>
+
+                    <div class="journey">
+
+                        <div>
+                            <span>🟢</span>
+                            <p><b>Completed Python Basics</b><small>2 days ago</small></p>
+                        </div>
+
+                        <div>
+                            <span>🔵</span>
+                            <p><b>Started Pandas Learning</b><small>1 day ago</small></p>
+                        </div>
+
+                        <div>
+                            <span>🩷</span>
+                            <p><b>Completed Quiz: Python</b><small>3 days ago</small></p>
+                        </div>
+
+                        <div>
+                            <span>◼</span>
+                            <p><b>Added Project: Portfolio Website</b><small>4 days ago</small></p>
+                        </div>
+
+                        <div>
+                            <span>🏆</span>
+                            <p><b>Reached Level 3</b><small>5 days ago</small></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="motivation">
+                    <div>🚩</div>
+                    <h2>Keep going!</h2>
+                    <p>Your future self will<br>thank you. ❤️</p>
+                </div>
+
+            </aside>
+
+        </div>
     </div>
-
-    <div class="features">
-
-        <div class="card">
-            <div>🎯</div>
-            <h3>Personalized</h3>
-            <p>Learning based on your goals and current skills.</p>
-        </div>
-
-        <div class="card">
-            <div>🗺️</div>
-            <h3>Smart Roadmap</h3>
-            <p>Know exactly what to learn next.</p>
-        </div>
-
-        <div class="card">
-            <div>🧪</div>
-            <h3>Practice</h3>
-            <p>Practice skills and build real projects.</p>
-        </div>
-
-        <div class="card">
-            <div>🏆</div>
-            <h3>Track Progress</h3>
-            <p>Track your progress and achievements.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- GOAL -->
-<section id="goal" class="page">
-
-<div class="setup">
-
-<button class="back" onclick="showPage('home')">← Back</button>
-
-<div class="step">STEP 1 OF 5</div>
-
-<h1>What do you want to become?</h1>
-<p class="subtitle">Choose your career goal.</p>
-
-<div class="goal-grid">
-
-<div class="goal" onclick="selectGoal(this,'AI / ML')">
-<span>🤖</span>
-<h3>AI / ML</h3>
-<p>Artificial Intelligence & Machine Learning</p>
-</div>
-
-<div class="goal" onclick="selectGoal(this,'Data Science')">
-<span>📊</span>
-<h3>Data Science</h3>
-<p>Data analysis and statistics</p>
-</div>
-
-<div class="goal" onclick="selectGoal(this,'Cybersecurity')">
-<span>🛡️</span>
-<h3>Cybersecurity</h3>
-<p>Security and ethical hacking</p>
-</div>
-
-<div class="goal" onclick="selectGoal(this,'Web Development')">
-<span>🌐</span>
-<h3>Web Development</h3>
-<p>Frontend, backend & full-stack</p>
-</div>
-
-<div class="goal" onclick="selectGoal(this,'UI / UX')">
-<span>🎨</span>
-<h3>UI / UX</h3>
-<p>Design and user experience</p>
-</div>
-
-<div class="goal" onclick="selectGoal(this,'Electronics')">
-<span>⚡</span>
-<h3>Electronics</h3>
-<p>Hardware and embedded systems</p>
-</div>
-
-<div class="goal" onclick="selectGoal(this,'Programming')">
-<span>💻</span>
-<h3>Programming</h3>
-<p>Programming fundamentals</p>
-</div>
-
-<div class="goal" onclick="selectGoal(this,'Other')">
-<span>✨</span>
-<h3>Other</h3>
-<p>Choose your own goal</p>
-</div>
-
-</div>
-
-<input id="customGoal"
-class="input"
-placeholder="Enter your custom goal..."
-style="display:none;">
-
-<div class="next">
-<button class="primary" onclick="goSkills()">Continue →</button>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SKILLS -->
-<section id="skills" class="page">
-
-<div class="setup">
-
-<button class="back" onclick="showPage('goal')">← Back</button>
-
-<div class="step">STEP 2 OF 5</div>
-
-<h1>What do you already know?</h1>
-
-<p class="subtitle">Select the skills you already have.</p>
-
-<div class="skill-list">
-
-<button class="skill" onclick="toggleSkill(this)">Python</button>
-<button class="skill" onclick="toggleSkill(this)">C / C++</button>
-<button class="skill" onclick="toggleSkill(this)">Java</button>
-<button class="skill" onclick="toggleSkill(this)">JavaScript</button>
-<button class="skill" onclick="toggleSkill(this)">HTML / CSS</button>
-<button class="skill" onclick="toggleSkill(this)">SQL</button>
-<button class="skill" onclick="toggleSkill(this)">Git / GitHub</button>
-<button class="skill" onclick="toggleSkill(this)">Excel</button>
-<button class="skill" onclick="toggleSkill(this)">Figma</button>
-<button class="skill" onclick="toggleSkill(this)">Linux</button>
-<button class="skill" onclick="toggleSkill(this)">None</button>
-
-</div>
-
-<div class="next">
-<button class="primary" onclick="goLevel()">Continue →</button>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- LEVEL -->
-<section id="level" class="page">
-
-<div class="setup">
-
-<button class="back" onclick="showPage('skills')">← Back</button>
-
-<div class="step">STEP 3 OF 5</div>
-
-<h1>What's your current level?</h1>
-
-<p class="subtitle">Choose the level that describes you best.</p>
-
-<div class="level-grid">
-
-<div class="level" onclick="selectLevel(this,'Beginner')">
-<span>🌱</span>
-<h3>Beginner</h3>
-<p>I'm starting from the basics.</p>
-</div>
-
-<div class="level" onclick="selectLevel(this,'Intermediate')">
-<span>⚡</span>
-<h3>Intermediate</h3>
-<p>I know the fundamentals.</p>
-</div>
-
-<div class="level" onclick="selectLevel(this,'Advanced')">
-<span>🔥</span>
-<h3>Advanced</h3>
-<p>I already have strong knowledge.</p>
-</div>
-
-</div>
-
-<div class="next">
-<button class="primary" onclick="goTime()">Continue →</button>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- TIME -->
-<section id="time" class="page">
-
-<div class="setup">
-
-<button class="back" onclick="showPage('level')">← Back</button>
-
-<div class="step">STEP 4 OF 5</div>
-
-<h1>How much time can you learn?</h1>
-
-<p class="subtitle">We'll use your available time for your roadmap.</p>
-
-<div class="time-grid">
-
-<div class="time" onclick="selectTime(this,'30 min/day')">
-<span>⏱️</span>
-<h3>30 min/day</h3>
-<p>Light learning</p>
-</div>
-
-<div class="time" onclick="selectTime(this,'1 hour/day')">
-<span>🔥</span>
-<h3>1 hour/day</h3>
-<p>Steady progress</p>
-</div>
-
-<div class="time" onclick="selectTime(this,'2 hours/day')">
-<span>🚀</span>
-<h3>2 hours/day</h3>
-<p>Fast progress</p>
-</div>
-
-<div class="time" onclick="selectTime(this,'3+ hours/day')">
-<span>⚡</span>
-<h3>3+ hours/day</h3>
-<p>Intensive learning</p>
-</div>
-
-</div>
-
-<div class="next">
-<button class="primary" onclick="goInterests()">Continue →</button>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- INTERESTS -->
-<section id="interests" class="page">
-
-<div class="setup">
-
-<button class="back" onclick="showPage('time')">← Back</button>
-
-<div class="step">STEP 5 OF 5</div>
-
-<h1>What are you interested in?</h1>
-
-<p class="subtitle">Select the things you enjoy learning or building.</p>
-
-<div class="interest-list">
-
-<button class="interest" onclick="toggleInterest(this)">🤖 AI & Technology</button>
-<button class="interest" onclick="toggleInterest(this)">💻 Coding</button>
-<button class="interest" onclick="toggleInterest(this)">📊 Data</button>
-<button class="interest" onclick="toggleInterest(this)">🎨 Design</button>
-<button class="interest" onclick="toggleInterest(this)">🔐 Security</button>
-<button class="interest" onclick="toggleInterest(this)">⚙️ Hardware</button>
-<button class="interest" onclick="toggleInterest(this)">🧠 Problem Solving</button>
-<button class="interest" onclick="toggleInterest(this)">🚀 Building Projects</button>
-
-</div>
-
-<div class="next">
-<button class="primary" onclick="finishSetup()">Create My Roadmap 🚀</button>
-</div>
-
-</div>
 
 </section>
 
 
 <!-- PROFILE -->
-<section id="result" class="page">
-
-<div class="result">
-
-<div class="success">✨ YOUR PROFILE IS READY</div>
-
-<h1>Your SkillPilot journey is ready.</h1>
-
-<p>Let's check your current knowledge before building your roadmap.</p>
-
-<div class="profile-summary">
-
-<div>
-<small>GOAL</small>
-<strong id="resultGoal">—</strong>
-</div>
-
-<div>
-<small>LEVEL</small>
-<strong id="resultLevel">—</strong>
-</div>
-
-<div>
-<small>TIME</small>
-<strong id="resultTime">—</strong>
-</div>
-
-<div>
-<small>SKILLS</small>
-<strong id="resultSkills">—</strong>
-</div>
-
-</div>
-
-<button class="primary" onclick="startAssessment()">
-Start Skill Assessment →
-</button>
-
-</div>
-
+<section id="profile" class="page simple-page">
+    <h1>Your Profile</h1>
+    <p>Manage your learning preferences and career goal.</p>
 </section>
 
 
 <!-- ASSESSMENT -->
-<section id="assessment" class="page">
+<section id="assessment" class="page simple-page">
+    <h1>Skill Assessment</h1>
+    <p>Test your current technical knowledge.</p>
 
-<div class="assessment">
-
-<div class="assessment-top">
-
-<button class="back" onclick="showPage('result')">← Profile</button>
-
-<span id="questionCounter">Question 1 of 10</span>
-
-</div>
-
-<div class="progress">
-<div id="progressBar"></div>
-</div>
-
-<div class="assessment-card">
-
-<div class="assessment-tag">SKILL ASSESSMENT</div>
-
-<h1 id="questionText">Question</h1>
-
-<div id="options" class="options"></div>
-
-<div class="assessment-actions">
-
-<button id="prevBtn"
-class="secondary"
-onclick="previousQuestion()">← Previous</button>
-
-<button id="nextBtn"
-class="primary"
-onclick="nextQuestion()">Next →</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ASSESSMENT RESULT -->
-<section id="assessmentResult" class="page">
-
-<div class="assessment-result">
-
-<div class="success">🎉 ASSESSMENT COMPLETE</div>
-
-<h1>Your Skill Analysis</h1>
-
-<div class="score-circle">
-<span id="scoreNumber">0%</span>
-</div>
-
-<h2 id="assessmentLevel">Beginner</h2>
-
-<p id="assessmentMessage"></p>
-
-<div class="analysis-grid">
-
-<div class="analysis-box">
-<span>✅</span>
-<strong id="correctCount">0</strong>
-<small>Correct</small>
-</div>
-
-<div class="analysis-box">
-<span>❌</span>
-<strong id="wrongCount">0</strong>
-<small>Incorrect</small>
-</div>
-
-<div class="analysis-box">
-<span>🎯</span>
-<strong id="focusCount">0</strong>
-<small>Focus Areas</small>
-</div>
-
-</div>
-
-<div class="weak-area">
-
-<h3>📌 Recommended Focus</h3>
-
-<p id="weakTopics"></p>
-
-</div>
-
-<button class="primary" onclick="showRoadmap()">
-View My Roadmap →
-</button>
-
-</div>
-
+    <button class="primary" onclick="startAssessment()">
+        Start Assessment →
+    </button>
 </section>
 
 
 <!-- ROADMAP -->
-<section id="roadmap" class="page">
+<section id="roadmap" class="page simple-page">
+    <h1 id="roadmapTitle">Your Roadmap</h1>
+    <p id="roadmapSubtitle">Your personalized learning journey.</p>
 
-<div class="roadmap">
+    <div id="roadmapList" class="full-roadmap"></div>
+</section>
 
-<div class="roadmap-heading">
 
-<div>
-<div class="success">🗺️ PERSONALIZED ROADMAP</div>
+<!-- SKILLS -->
+<section id="skillsPage" class="page simple-page">
+    <h1>Your Skills</h1>
+    <p>Track and improve your technical skills.</p>
 
-<h1 id="roadmapTitle">Your Learning Roadmap</h1>
-
-<p id="roadmapSubtitle"></p>
-</div>
-
-<button class="dashboard-btn"
-onclick="showPage('dashboard')">
-📊 Dashboard
-</button>
-
-</div>
-
-<div id="roadmapList" class="roadmap-list"></div>
-
-</div>
-
+    <div class="large-skill-grid">
+        <div>🐍 Python <b>Advanced</b></div>
+        <div>💻 C <b>Intermediate</b></div>
+        <div>🌐 HTML & CSS <b>Intermediate</b></div>
+        <div>⚡ JavaScript <b>Beginner</b></div>
+        <div>📊 Pandas <b>Beginner</b></div>
+        <div>🧠 Machine Learning <b>Locked</b></div>
+    </div>
 </section>
 
 
 <!-- DASHBOARD -->
-<section id="dashboard" class="page">
+<section id="dashboard" class="page simple-page">
+    <h1>Learning Dashboard</h1>
+    <p>Your complete learning overview.</p>
 
-<div class="dashboard">
-
-<div class="dashboard-heading">
-
-<div>
-<div class="success">📊 YOUR LEARNING HUB</div>
-<h1>Welcome to SkillPilot</h1>
-<p id="dashboardGoal">Complete your setup to begin.</p>
-</div>
-
-<button class="primary small-btn" onclick="showPage('roadmap')">
-View Roadmap →
-</button>
-
-</div>
-
-
-<!-- STATS -->
-
-<div class="stats-grid">
-
-<div class="stat-card">
-<span>⭐</span>
-<small>XP</small>
-<strong id="xpValue">0</strong>
-</div>
-
-<div class="stat-card">
-<span>🔥</span>
-<small>STREAK</small>
-<strong id="streakValue">1 day</strong>
-</div>
-
-<div class="stat-card">
-<span>📈</span>
-<small>PROGRESS</small>
-<strong id="progressValue">0%</strong>
-</div>
-
-<div class="stat-card">
-<span>🏆</span>
-<small>BADGES</small>
-<strong id="badgeValue">0</strong>
-</div>
-
-</div>
-
-
-<!-- DAILY MISSION -->
-
-<div class="dashboard-section">
-
-<div class="section-title">
-
-<div>
-<h2>🎯 What Should I Learn Today?</h2>
-<p>Your recommended daily mission.</p>
-</div>
-
-<span class="mission-xp">+50 XP</span>
-
-</div>
-
-<div class="mission">
-
-<div class="mission-icon">🚀</div>
-
-<div class="mission-content">
-
-<h3 id="missionTitle">Start your learning journey</h3>
-
-<p id="missionDescription">
-Complete your assessment to unlock your first daily mission.
-</p>
-
-<div class="mission-meta">
-<span>⏱️ <b id="missionTime">15 min</b></span>
-<span>🎯 Skill Practice</span>
-</div>
-
-</div>
-
-<button class="primary mission-btn"
-onclick="completeMission()">
-Complete
-</button>
-
-</div>
-
-</div>
-
-
-<!-- PROGRESS -->
-
-<div class="dashboard-section">
-
-<div class="section-title">
-
-<div>
-<h2>📈 Learning Progress</h2>
-<p>Track your roadmap completion.</p>
-</div>
-
-<strong id="progressPercent">0%</strong>
-
-</div>
-
-<div class="big-progress">
-<div id="dashboardProgress"></div>
-</div>
-
-</div>
-
-
-<!-- ACHIEVEMENTS -->
-
-<div class="dashboard-section">
-
-<div class="section-title">
-
-<div>
-<h2>🏆 Achievements</h2>
-<p>Keep learning to unlock badges.</p>
-</div>
-
-</div>
-
-<div class="badges">
-
-<div class="badge-card" id="badgeFirst">
-<span>🌱</span>
-<strong>First Step</strong>
-<small>Complete your first skill</small>
-</div>
-
-<div class="badge-card">
-<span>🎯</span>
-<strong>Focused Learner</strong>
-<small>Complete 3 skills</small>
-</div>
-
-<div class="badge-card">
-<span>🔥</span>
-<strong>On Fire</strong>
-<small>Build a learning streak</small>
-</div>
-
-<div class="badge-card">
-<span>🏆</span>
-<strong>Roadmap Hero</strong>
-<small>Complete your roadmap</small>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+    <div class="dashboard-big-card">
+        <h2>Progress</h2>
+        <strong id="dashboardProgressText">42%</strong>
+        <div class="big-bar">
+            <div id="dashboardProgress"></div>
+        </div>
+    </div>
 </section>
 
 </main>
+</div>
 
 
 <footer>
@@ -666,4 +650,4 @@ Complete
 <script src="script.js"></script>
 
 </body>
-    </html>
+                                </html>
