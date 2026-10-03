@@ -1,7 +1,19 @@
+/* =====================================
+   SKILLPILOT V6 - MAIN JAVASCRIPT
+===================================== */
+
+
+/* =====================================
+   USER NAME
+===================================== */
+
 let userName = localStorage.getItem("skillpilotUserName");
 
 if (!userName) {
-    userName = prompt("Welcome to SkillPilot! Enter your name:");
+
+    userName = prompt(
+        "Welcome to SkillPilot! Enter your name:"
+    );
 
     if (!userName || userName.trim() === "") {
         userName = "Student";
@@ -9,26 +21,16 @@ if (!userName) {
 
     userName = userName.trim();
 
-    localStorage.setItem("skillpilotUserName", userName);
+    localStorage.setItem(
+        "skillpilotUserName",
+        userName
+    );
 }
 
-document.addEventListener("DOMContentLoaded", function(){
 
-    const greetingName =
-        document.getElementById("userName");
-
-    const topName =
-        document.getElementById("topUserName");
-
-    if(greetingName){
-        greetingName.innerText = userName;
-    }
-
-    if(topName){
-        topName.innerText = userName;
-    }
-
-});
+/* =====================================
+   USER PROGRESS
+===================================== */
 
 let xp = 320;
 let streak = 5;
@@ -39,37 +41,44 @@ let progress = 42;
    PAGE NAVIGATION
 ===================================== */
 
-function showPage(page){
+function showPage(page) {
 
-    document.querySelectorAll(".page").forEach(function(item){
+    document.querySelectorAll(".page").forEach(function(item) {
         item.classList.remove("active");
     });
 
-    const target = document.getElementById(page);
+    const target =
+        document.getElementById(page);
 
-    if(target){
+    if (target) {
         target.classList.add("active");
     }
 
-    document.querySelectorAll(".side-link").forEach(function(item){
+    document.querySelectorAll(".side-link").forEach(function(item) {
         item.classList.remove("active");
     });
 
-    if(page === "home"){
-        document.querySelector(".side-link").classList.add("active");
+    if (page === "home") {
+
+        const homeButton =
+            document.querySelector(".side-link");
+
+        if (homeButton) {
+            homeButton.classList.add("active");
+        }
     }
 
-    if(page === "roadmap"){
+    if (page === "roadmap") {
         renderRoadmap();
     }
 
-    if(page === "dashboard"){
+    if (page === "dashboard") {
         updateDashboard();
     }
 
     window.scrollTo({
-        top:0,
-        behavior:"smooth"
+        top: 0,
+        behavior: "smooth"
     });
 }
 
@@ -78,80 +87,154 @@ function showPage(page){
    DAILY MISSION
 ===================================== */
 
-function completeMission(){
+function completeMission() {
 
     xp += 50;
 
-    document.getElementById("currentXP").innerText = xp;
-    document.getElementById("sideXP").innerText =
-        xp + " / 500 XP";
+    updateXPDisplay();
 
-    document.getElementById("sideXPBar").style.width =
-        Math.min((xp / 500) * 100,100) + "%";
-
-    document.getElementById("levelProgress").style.width =
-        Math.min((xp / 500) * 100,100) + "%";
-    
+    /*
+       No popup here.
+       XP updates silently.
+    */
 }
 
 
 /* =====================================
-   ROADMAP
+   UPDATE XP
+===================================== */
+
+function updateXPDisplay() {
+
+    const currentXP =
+        document.getElementById("currentXP");
+
+    if (currentXP) {
+        currentXP.innerText = xp;
+    }
+
+
+    const sideXP =
+        document.getElementById("sideXP");
+
+    if (sideXP) {
+        sideXP.innerText =
+            xp + " / 500 XP";
+    }
+
+
+    const sideXPBar =
+        document.getElementById("sideXPBar");
+
+    if (sideXPBar) {
+
+        sideXPBar.style.width =
+            Math.min(
+                (xp / 500) * 100,
+                100
+            ) + "%";
+    }
+
+
+    const levelProgress =
+        document.getElementById("levelProgress");
+
+    if (levelProgress) {
+
+        levelProgress.style.width =
+            Math.min(
+                (xp / 500) * 100,
+                100
+            ) + "%";
+    }
+}
+
+
+/* =====================================
+   ROADMAP DATA
 ===================================== */
 
 const roadmapData = [
 
     {
-        title:"Python Foundations",
-        description:"Learn Python syntax, variables, functions and problem solving.",
-        status:"completed"
+        title: "Python Foundations",
+
+        description:
+            "Learn Python syntax, variables, functions and problem solving.",
+
+        status: "completed"
     },
 
-    {
-        title:"NumPy Fundamentals",
-        description:"Work with arrays and numerical data using NumPy.",
-        status:"completed"
-    },
 
     {
-        title:"Pandas DataFrame",
-        description:"Learn how to load, clean and analyze datasets using Pandas.",
-        status:"current"
+        title: "NumPy Fundamentals",
+
+        description:
+            "Work with arrays and numerical data using NumPy.",
+
+        status: "completed"
     },
 
-    {
-        title:"Statistics",
-        description:"Understand probability, averages, distributions and data patterns.",
-        status:"locked"
-    },
 
     {
-        title:"Machine Learning",
-        description:"Learn datasets, models, training and evaluation.",
-        status:"locked"
+        title: "Pandas DataFrame",
+
+        description:
+            "Learn how to load, clean and analyze datasets using Pandas.",
+
+        status: "current"
     },
 
+
     {
-        title:"Real World Projects",
-        description:"Build portfolio-ready AI and ML projects.",
-        status:"locked"
+        title: "Statistics",
+
+        description:
+            "Understand probability, averages, distributions and data patterns.",
+
+        status: "locked"
+    },
+
+
+    {
+        title: "Machine Learning",
+
+        description:
+            "Learn datasets, models, training and evaluation.",
+
+        status: "locked"
+    },
+
+
+    {
+        title: "Real World Projects",
+
+        description:
+            "Build portfolio-ready AI and ML projects.",
+
+        status: "locked"
     }
 
 ];
 
 
-function renderRoadmap(){
+/* =====================================
+   RENDER ROADMAP
+===================================== */
+
+function renderRoadmap() {
 
     const container =
         document.getElementById("roadmapList");
 
-    if(!container){
+    if (!container) {
         return;
     }
 
     container.innerHTML = "";
 
-    roadmapData.forEach(function(item,index){
+
+    roadmapData.forEach(function(item, index) {
 
         const div =
             document.createElement("div");
@@ -159,31 +242,60 @@ function renderRoadmap(){
         div.className =
             "roadmap-item";
 
-        let statusText = "🔒 Locked";
 
-        if(item.status === "completed"){
-            statusText = "✅ Completed";
+        let statusText =
+            "🔒 Locked";
+
+
+        if (item.status === "completed") {
+
+            statusText =
+                "✅ Completed";
         }
 
-        if(item.status === "current"){
-            statusText = "🟡 In Progress";
+
+        if (item.status === "current") {
+
+            statusText =
+                "🟡 In Progress";
         }
+
 
         div.innerHTML = `
+
             <div class="roadmap-number">
-                ${item.status === "completed" ? "✓" : index + 1}
+
+                ${
+                    item.status === "completed"
+                    ? "✓"
+                    : index + 1
+                }
+
             </div>
+
 
             <div>
-                <h3>${item.title}</h3>
 
-                <p>${item.description}</p>
+                <h3>
+                    ${item.title}
+                </h3>
+
+
+                <p>
+                    ${item.description}
+                </p>
+
 
                 <span class="skill-status">
+
                     ${statusText}
+
                 </span>
+
             </div>
+
         `;
+
 
         container.appendChild(div);
 
@@ -195,20 +307,29 @@ function renderRoadmap(){
    DASHBOARD
 ===================================== */
 
-function updateDashboard(){
+function updateDashboard() {
 
     const progressText =
-        document.getElementById("dashboardProgressText");
+        document.getElementById(
+            "dashboardProgressText"
+        );
+
 
     const progressBar =
-        document.getElementById("dashboardProgress");
+        document.getElementById(
+            "dashboardProgress"
+        );
 
-    if(progressText){
+
+    if (progressText) {
+
         progressText.innerText =
             progress + "%";
     }
 
-    if(progressBar){
+
+    if (progressBar) {
+
         progressBar.style.width =
             progress + "%";
     }
@@ -216,32 +337,223 @@ function updateDashboard(){
 
 
 /* =====================================
-   CHECKBOX PLAN
+   TODAY'S PLAN
 ===================================== */
 
-document.addEventListener("change",function(event){
+document.addEventListener(
+    "change",
+    function(event) {
 
-    if(event.target.matches(".check-item input")){
+        if (
+            event.target.matches(
+                ".check-item input"
+            )
+        ) {
 
-        if(event.target.checked){
+            if (event.target.checked) {
 
-            xp += 10;
+                xp += 10;
 
-            const xpElement =
-                document.getElementById("currentXP");
-
-            if(xpElement){
-                xpElement.innerText = xp;
+                updateXPDisplay();
             }
         }
 
     }
-
-});
+);
 
 
 /* =====================================
-   QUICK ACTIONS
+   USER NAME DISPLAY
 ===================================== */
 
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
 
+        const greetingName =
+            document.getElementById(
+                "userName"
+            );
+
+
+        const topName =
+            document.getElementById(
+                "topUserName"
+            );
+
+
+        if (greetingName) {
+
+            greetingName.innerText =
+                userName;
+        }
+
+
+        if (topName) {
+
+            topName.innerText =
+                userName;
+        }
+
+
+        updateXPDisplay();
+
+        updateDashboard();
+
+    }
+);
+
+
+/* =====================================
+   SEARCH
+===================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const searchInput =
+            document.querySelector(
+                ".search input"
+            );
+
+
+        if (!searchInput) {
+            return;
+        }
+
+
+        searchInput.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    const value =
+                        searchInput.value.trim();
+
+
+                    if (value !== "") {
+
+                        console.log(
+                            "Searching for:",
+                            value
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================
+   TODAY'S PLAN CHECKBOXES
+===================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const checkboxes =
+            document.querySelectorAll(
+                ".check-item input"
+            );
+
+
+        checkboxes.forEach(
+            function(checkbox) {
+
+                checkbox.addEventListener(
+                    "change",
+                    function() {
+
+                        const item =
+                            checkbox.closest(
+                                ".check-item"
+                            );
+
+
+                        if (checkbox.checked) {
+
+                            if (item) {
+
+                                item.classList.add(
+                                    "checked"
+                                );
+                            }
+
+                        } else {
+
+                            if (item) {
+
+                                item.classList.remove(
+                                    "checked"
+                                );
+                            }
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================
+   START APP
+===================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const pages =
+            document.querySelectorAll(
+                ".page"
+            );
+
+
+        if (pages.length > 0) {
+
+            pages.forEach(
+                function(page) {
+
+                    page.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            const home =
+                document.getElementById(
+                    "home"
+                );
+
+
+            if (home) {
+
+                home.classList.add(
+                    "active"
+                );
+            }
+
+        }
+
+
+        updateXPDisplay();
+
+        updateDashboard();
+
+    }
+);
