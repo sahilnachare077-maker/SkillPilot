@@ -91,8 +91,7 @@ function completeMission(){
 
     document.getElementById("levelProgress").style.width =
         Math.min((xp / 500) * 100,100) + "%";
-
-    alert("Mission completed! +50 XP 🎉");
+    
 }
 
 
@@ -245,33 +244,4 @@ document.addEventListener("change",function(event){
    QUICK ACTIONS
 ===================================== */
 
-document.addEventListener("DOMContentLoaded",function(){
 
-    const quickButtons =
-        document.querySelectorAll(".quick-grid button");
-
-    quickButtons.forEach(function(button,index){
-
-        button.addEventListener("click",function(){
-
-            if(index === 0){
-                alert("Practice section is ready for the next update! 💻");
-            }
-
-            if(index === 1){
-                alert("Resources section is coming next! 📚");
-            }
-
-            if(index === 2){
-                alert("AI Assistant will help you learn step-by-step! 🤖");
-            }
-
-            if(index === 3){
-                alert("Reminder feature will be added soon! 🔔");
-            }
-
-        });
-
-    });
-
-});
