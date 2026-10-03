@@ -1,1159 +1,1060 @@
-let selectedGoal = "";
-let selectedSkills = [];
-let selectedLevel = "";
-let selectedTime = "";
-let selectedInterests = [];
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-let currentQuestion = 0;
-let answers = [];
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050d1b;
+    color:#e8eef8;
+    min-height:100vh;
+}
 
-let xp = 0;
-let streak = 1;
-let completedSkills = [];
+button,
+input{
+    font-family:inherit;
+}
 
+button{
+    cursor:pointer;
+}
 
-/* =====================================
-   ASSESSMENT QUESTIONS
-===================================== */
+.topbar{
+    height:65px;
+    background:#071326;
+    border-bottom:1px solid #182b46;
+    display:flex;
+    align-items:center;
+    padding:0 18px;
+    gap:30px;
+    position:sticky;
+    top:0;
+    z-index:20;
+}
 
-const questions = [
-    {
-        question: "What does HTML mainly define?",
-        options: [
-            "The structure of a webpage",
-            "The database",
-            "The server hardware",
-            "The internet connection"
-        ],
-        answer: 0,
-        skill: "HTML"
-    },
-    {
-        question: "Which language is mainly used to style webpages?",
-        options: [
-            "Python",
-            "CSS",
-            "SQL",
-            "Java"
-        ],
-        answer: 1,
-        skill: "CSS"
-    },
-    {
-        question: "Which language adds interactivity to webpages?",
-        options: [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "SQL"
-        ],
-        answer: 2,
-        skill: "JavaScript"
-    },
-    {
-        question: "What does Git help developers do?",
-        options: [
-            "Edit images",
-            "Track code changes",
-            "Create Wi-Fi",
-            "Design hardware"
-        ],
-        answer: 1,
-        skill: "Git"
-    },
-    {
-        question: "Which one is a programming language?",
-        options: [
-            "Python",
-            "HTML",
-            "CSS",
-            "HTTP"
-        ],
-        answer: 0,
-        skill: "Programming"
-    },
-    {
-        question: "What does SQL commonly work with?",
-        options: [
-            "Images",
-            "Databases",
-            "CSS animations",
-            "Computer screens"
-        ],
-        answer: 1,
-        skill: "SQL"
-    },
-    {
-        question: "Which data type stores True or False?",
-        options: [
-            "String",
-            "Boolean",
-            "Array",
-            "Float"
-        ],
-        answer: 1,
-        skill: "Programming"
-    },
-    {
-        question: "What is an algorithm?",
-        options: [
-            "A step-by-step method to solve a problem",
-            "A computer screen",
-            "A programming font",
-            "A type of cable"
-        ],
-        answer: 0,
-        skill: "Problem Solving"
-    },
-    {
-        question: "What does API commonly allow?",
-        options: [
-            "Different software systems to communicate",
-            "A computer to charge",
-            "A screen to become larger",
-            "A keyboard to type faster"
-        ],
-        answer: 0,
-        skill: "Development"
-    },
-    {
-        question: "What is debugging?",
-        options: [
-            "Finding and fixing errors in code",
-            "Designing a logo",
-            "Installing a monitor",
-            "Creating a password"
-        ],
-        answer: 0,
-        skill: "Problem Solving"
-    }
-];
+.brand{
+    width:215px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
+.brand-icon{
+    width:39px;
+    height:39px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#536dff,#8b36ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+}
 
-/* =====================================
-   PAGE NAVIGATION
-===================================== */
+.brand strong{
+    display:block;
+    font-size:18px;
+}
 
-function showPage(page) {
+.brand small{
+    display:block;
+    color:#7586a2;
+    font-size:9px;
+}
 
-    document.querySelectorAll(".page").forEach(function(section) {
-        section.classList.remove("active");
-    });
+.search{
+    height:38px;
+    max-width:620px;
+    flex:1;
+    background:#101e36;
+    border:1px solid #29405f;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    padding:0 13px;
+    color:#8495b0;
+    gap:10px;
+}
 
-    const target = document.getElementById(page);
+.search input{
+    background:none;
+    border:0;
+    outline:0;
+    color:white;
+    width:100%;
+}
 
-    if (target) {
-        target.classList.add("active");
-    }
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
 
-    if (page === "dashboard") {
-        updateDashboard();
-    }
+.top-actions button{
+    background:none;
+    border:0;
+    color:#a5b4ca;
+    font-size:18px;
+}
 
-    if (page === "roadmap") {
-        renderRoadmap();
-    }
+.profile-mini{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+.profile-mini b{
+    font-size:12px;
+    display:block;
+}
+
+.profile-mini small{
+    color:#7b8ba3;
+    font-size:10px;
+}
+
+.avatar{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ef9b68,#5b7cff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.app{
+    display:flex;
+}
+
+.sidebar{
+    width:215px;
+    min-height:calc(100vh - 65px);
+    background:#061225;
+    border-right:1px solid #182b46;
+    padding:23px 12px;
+    position:sticky;
+    top:65px;
+    height:calc(100vh - 65px);
+    overflow:auto;
+}
+
+.side-link{
+    width:100%;
+    background:none;
+    border:0;
+    color:#91a2bd;
+    padding:11px 14px;
+    margin-bottom:4px;
+    border-radius:9px;
+    text-align:left;
+    display:flex;
+    gap:13px;
+    align-items:center;
+    font-size:13px;
+}
+
+.side-link:hover{
+    background:#101f39;
+    color:white;
+}
+
+.side-link.active{
+    color:white;
+    background:linear-gradient(90deg,#315cff,#5230e9);
+    box-shadow:0 8px 25px #304dff22;
+}
+
+.sidebar-bottom{
+    margin:28px 6px 0;
+    padding:20px 15px;
+    border:1px solid #1c3453;
+    border-radius:12px;
+    background:#091a31;
+}
+
+.rocket{
+    font-size:28px;
+    margin-bottom:12px;
+}
+
+.sidebar-bottom h3{
+    font-size:12px;
+    line-height:1.6;
+}
+
+.sidebar-bottom small{
+    color:#8091aa;
+    display:block;
+    margin-top:9px;
+}
+
+.sidebar-bottom b{
+    font-size:10px;
+    color:#8ba5ff;
+}
+
+.xp-bar{
+    height:6px;
+    background:#172c49;
+    border-radius:20px;
+    margin-top:15px;
+    overflow:hidden;
+}
+
+#sideXPBar{
+    width:64%;
+    height:100%;
+    background:linear-gradient(90deg,#6b55ff,#35baff);
+}
+
+main{
+    flex:1;
+    min-width:0;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.dashboard-wrap{
+    max-width:1400px;
+    margin:auto;
+    padding:23px;
+}
+
+.welcome-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    margin-bottom:20px;
+}
+
+.welcome-row h1{
+    font-size:21px;
+    margin-bottom:7px;
+}
+
+.welcome-row p{
+    color:#8495ad;
+    font-size:13px;
+}
+
+.quote{
+    background:linear-gradient(135deg,#25175e,#181448);
+    border:1px solid #3b297b;
+    border-radius:12px;
+    padding:12px 22px;
+    text-align:center;
+    font-size:12px;
+    line-height:1.5;
+    min-width:200px;
+}
+
+.quote small{
+    display:block;
+    color:#a79bcf;
+    margin-top:5px;
+}
+
+.main-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 290px;
+    gap:20px;
+}
+
+.content{
+    min-width:0;
+}
+
+.right-column{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.mission-card{
+    min-height:220px;
+    background:
+        radial-gradient(circle at 85% 20%,#6135b650,transparent 28%),
+        linear-gradient(110deg,#2936b5,#26217e 60%,#20165d);
+    border:1px solid #4342bf;
+    border-radius:16px;
+    overflow:hidden;
+    display:flex;
+    position:relative;
+}
+
+.mission-content{
+    padding:23px;
+    flex:1;
+    z-index:2;
+}
+
+.eyebrow{
+    font-size:14px;
+    font-weight:bold;
+}
+
+.mission-card h2{
+    font-size:23px;
+    margin:15px 0 22px;
+}
+
+.mission-info{
+    display:flex;
+    gap:25px;
+    color:#bdc7f1;
+}
+
+.mission-info div{
+    display:flex;
+    gap:7px;
+    font-size:18px;
+}
+
+.mission-info span{
+    font-size:10px;
+    line-height:1.4;
+}
+
+.mission-info b{
+    color:white;
+}
+
+.primary{
+    border:0;
+    background:linear-gradient(90deg,#5665ff,#6950ff);
+    color:white;
+    padding:11px 25px;
+    border-radius:9px;
+    font-weight:bold;
+    margin-top:20px;
+    box-shadow:0 7px 22px #1b0cff40;
+}
+
+.primary:hover{
+    transform:translateY(-1px);
+}
+
+.mission-art{
+    width:260px;
+    position:relative;
+}
+
+.python{
+    position:absolute;
+    top:28px;
+    left:50px;
+    font-size:60px;
+}
+
+.student-art{
+    position:absolute;
+    bottom:10px;
+    right:50px;
+    font-size:85px;
+}
+
+.chart-art{
+    position:absolute;
+    bottom:22px;
+    left:30px;
+    font-size:35px;
+}
+
+.panel{
+    background:#08172b;
+    border:1px solid #1a304e;
+    border-radius:13px;
+    padding:17px;
+    margin-top:18px;
+    box-shadow:0 10px 30px #00000012;
+}
+
+.panel-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:17px;
+}
+
+.panel-heading b{
+    font-size:14px;
+}
+
+.panel-heading button{
+    background:none;
+    border:0;
+    color:#6da3ff;
+    font-size:11px;
+}
+
+.panel-heading small{
+    display:block;
+    color:#73849d;
+    font-size:10px;
+    margin-top:5px;
+}
+
+.panel-icon{
+    margin-right:8px;
+}
+
+.mini-roadmap{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:8px;
+    overflow:auto;
+    padding:5px 4px;
+}
+
+.mini-roadmap i{
+    color:#536783;
+    padding-top:19px;
+}
+
+.road-step{
+    min-width:85px;
+    text-align:center;
+}
+
+.road-step .circle{
+    width:39px;
+    height:39px;
+    margin:auto auto 8px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#1a2d4c;
+    border:1px solid #3a5274;
+}
+
+.road-step.completed .circle{
+    background:#0d735b;
+    border-color:#28d8ad;
+}
+
+.road-step.current .circle{
+    background:#3d3410;
+    border-color:#e5b52d;
+}
+
+.road-step b{
+    font-size:10px;
+    display:block;
+}
+
+.road-step small{
+    color:#70829b;
+    font-size:8px;
+    display:block;
+    margin-top:5px;
+}
+
+.road-step.completed small{
+    color:#27d8a8;
+}
+
+.road-step.current small{
+    color:#e2b42d;
+}
+
+.two-column{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 18px;
+}
+
+.gap-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.gap-grid > div{
+    border-right:1px solid #243957;
+    padding:5px 10px;
+}
+
+.gap-grid > div:last-child{
+    border:0;
+}
+
+.big-icon{
+    display:block;
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.gap-grid small{
+    display:block;
+    color:#71839e;
+    font-size:9px;
+}
+
+.gap-grid strong{
+    display:block;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.small{
+    padding:8px 13px;
+    font-size:10px;
+    margin-top:17px;
+}
+
+.project-card{
+    display:flex;
+    gap:12px;
+}
+
+.project-icon{
+    width:45px;
+    height:45px;
+    border-radius:10px;
+    background:#1672e9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    flex-shrink:0;
+}
+
+.project-card h3{
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.project-card p{
+    color:#8494aa;
+    font-size:9px;
+    line-height:1.5;
+    margin:8px 0;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px;
+}
+
+.tags span{
+    background:#142e50;
+    color:#87aaff;
+    padding:3px 7px;
+    border-radius:10px;
+    font-size:8px;
+}
+
+.project-card > div:last-child > small{
+    color:#a1aabd;
+    font-size:9px;
+}
+
+.tiny{
+    padding:7px 11px;
+    font-size:9px;
+    margin-top:8px;
+}
+
+.skill-cards{
+    display:flex;
+    gap:8px;
+    overflow:auto;
+}
+
+.user-skill{
+    min-width:105px;
+    background:#0e2037;
+    border:1px solid #1d4d59;
+    border-radius:10px;
+    padding:10px;
+    font-size:10px;
+}
+
+.user-skill span{
+    color:#31d5a4;
+}
+
+.user-skill small{
+    display:block;
+    color:#2dc7a5;
+    margin-top:6px;
+    font-size:8px;
+}
+
+.user-skill.beginner{
+    border-color:#7c5926;
+}
+
+.user-skill.beginner span,
+.user-skill.beginner small{
+    color:#e0a62b;
+}
+
+.more-skills{
+    margin-top:10px;
+    color:#6f9cff;
+    font-size:9px;
+}
+
+.game-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    text-align:center;
+}
+
+.game-grid span{
+    display:block;
+    font-size:22px;
+    margin-bottom:7px;
+}
+
+.game-grid b{
+    display:block;
+    font-size:12px;
+}
+
+.game-grid small{
+    color:#7789a1;
+    font-size:9px;
+}
+
+.level-progress{
+    height:7px;
+    background:#172b47;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:17px;
+}
+
+#levelProgress{
+    width:64%;
+    height:100%;
+    background:linear-gradient(90deg,#7658ff,#35b9ff);
+}
+
+.xp-text{
+    display:block;
+    text-align:right;
+    color:#8494aa;
+    font-size:9px;
+    margin-top:6px;
+}
+
+.career-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.career{
+    border-radius:9px;
+    padding:13px;
+    min-height:105px;
+}
+
+.career span{
+    display:block;
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.career b{
+    display:block;
+    font-size:10px;
+}
+
+.career small{
+    display:block;
+    color:#a6b1c4;
+    font-size:8px;
+    margin:5px 0 10px;
+}
+
+.career button{
+    background:none;
+    border:0;
+    color:#c5d1ff;
+    font-size:8px;
+}
+
+.ai{background:#172a68;}
+.web{background:#173b66;}
+.cyber{background:#103e45;}
+.data{background:#302064;}
+
+.progress-panel{
+    margin-top:0;
+}
+
+.progress-panel h2{
+    font-size:15px;
+    margin-bottom:20px;
+}
+
+.progress-ring{
+    width:105px;
+    height:105px;
+    border-radius:50%;
+    margin:0 auto 20px;
+    background:conic-gradient(#2acbd1 0 42%,#263a56 42% 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.progress-ring > div{
+    width:81px;
+    height:81px;
+    border-radius:50%;
+    background:#08172b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+}
+
+.progress-ring b{
+    font-size:19px;
+}
+
+.progress-ring small{
+    color:#7789a1;
+    font-size:7px;
+    margin-top:4px;
+}
+
+.progress-stat{
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid #1c304c;
+    padding:12px 0;
+    font-size:10px;
+}
+
+.progress-stat span{
+    color:#a0aec1;
+}
+
+.progress-stat b{
+    color:#dfe7f4;
+}
+
+.check-item{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:10px 0;
+    font-size:10px;
+    color:#d0d9e8;
+}
+
+.check-item input{
+    width:19px;
+    height:19px;
+    accent-color:#43a5ff;
+}
+
+.check-item small{
+    color:#70839e;
+}
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+}
+
+.quick-grid button{
+    border:0;
+    border-radius:9px;
+    padding:12px 8px;
+    color:white;
+    background:#2723a0;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:17px;
+    text-align:left;
+}
+
+.quick-grid button:nth-child(2){
+    background:#116a76;
+}
+
+.quick-grid button:nth-child(3){
+    background:#4b20b0;
+}
+
+.quick-grid button:nth-child(4){
+    background:#9b6717;
+}
+
+.quick-grid span{
+    font-size:9px;
+    line-height:1.3;
+}
+
+.journey > div{
+    display:flex;
+    gap:10px;
+    padding:8px 0;
+}
+
+.journey > div > span{
+    font-size:14px;
+}
+
+.journey p{
+    font-size:9px;
+}
+
+.journey small{
+    display:block;
+    color:#697d97;
+    margin-top:3px;
+}
+
+.motivation{
+    background:linear-gradient(135deg,#151e6a,#152b69);
+    border:1px solid #3045a1;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+}
+
+.motivation div{
+    font-size:35px;
+}
+
+.motivation h2{
+    font-size:14px;
+    margin:8px 0;
+}
+
+.motivation p{
+    color:#abb8e2;
+    font-size:10px;
+    line-height:1.5;
+}
+
+.simple-page{
+    max-width:1000px;
+    margin:auto;
+    padding:55px 25px;
+}
+
+.simple-page h1{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.simple-page > p{
+    color:#8495ac;
+    margin-bottom:25px;
+}
+
+.full-roadmap{
+    display:grid;
+    gap:12px;
+}
+
+.full-roadmap .roadmap-item{
+    background:#08172b;
+    border:1px solid #1c3555;
+    border-radius:12px;
+    padding:20px;
+}
+
+.large-skill-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.large-skill-grid div{
+    background:#08172b;
+    border:1px solid #1c3555;
+    padding:22px;
+    border-radius:12px;
+}
+
+.large-skill-grid b{
+    display:block;
+    color:#6fa5ff;
+    margin-top:10px;
+    font-size:12px;
+}
+
+.dashboard-big-card{
+    background:#08172b;
+    border:1px solid #1c3555;
+    border-radius:15px;
+    padding:30px;
+}
+
+.dashboard-big-card strong{
+    display:block;
+    font-size:45px;
+    margin:15px 0;
+}
+
+.big-bar{
+    height:14px;
+    background:#172c48;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+#dashboardProgress{
+    width:42%;
+    height:100%;
+    background:linear-gradient(90deg,#6255ff,#30c9dd);
+}
+
+footer{
+    text-align:center;
+    border-top:1px solid #182b46;
+    padding:20px;
+    color:#62748e;
+    font-size:10px;
 }
 
 
-/* =====================================
-   GOAL
-===================================== */
+@media(max-width:1100px){
 
-function selectGoal(element, goal) {
-
-    document.querySelectorAll(".goal").forEach(function(item) {
-        item.classList.remove("selected");
-    });
-
-    element.classList.add("selected");
-
-    selectedGoal = goal;
-
-    const custom = document.getElementById("customGoal");
-
-    if (custom) {
-        custom.style.display =
-            goal === "Other" ? "block" : "none";
-    }
-}
-
-
-function goSkills() {
-
-    if (selectedGoal === "") {
-        alert("Please select your career goal first.");
-        return;
+    .sidebar{
+        width:180px;
     }
 
-    if (selectedGoal === "Other") {
-
-        const custom =
-            document.getElementById("customGoal");
-
-        if (!custom || custom.value.trim() === "") {
-            alert("Please enter your custom goal.");
-            return;
-        }
-
-        selectedGoal = custom.value.trim();
+    .main-grid{
+        grid-template-columns:1fr;
     }
 
-    showPage("skills");
-}
-
-
-/* =====================================
-   SKILLS
-===================================== */
-
-function toggleSkill(element) {
-
-    const skill = element.innerText.trim();
-
-    if (skill === "None") {
-
-        document.querySelectorAll(".skill").forEach(function(item) {
-            item.classList.remove("selected");
-        });
-
-        selectedSkills = ["None"];
-
-        element.classList.add("selected");
-
-        return;
+    .right-column{
+        display:grid;
+        grid-template-columns:1fr 1fr;
     }
 
-    document.querySelectorAll(".skill").forEach(function(item) {
-
-        if (item.innerText.trim() === "None") {
-            item.classList.remove("selected");
-        }
-
-    });
-
-    selectedSkills =
-        selectedSkills.filter(function(item) {
-            return item !== "None";
-        });
-
-    element.classList.toggle("selected");
-
-    if (element.classList.contains("selected")) {
-
-        if (!selectedSkills.includes(skill)) {
-            selectedSkills.push(skill);
-        }
-
-    } else {
-
-        selectedSkills =
-            selectedSkills.filter(function(item) {
-                return item !== skill;
-            });
-    }
-}
-
-
-function goLevel() {
-
-    if (selectedSkills.length === 0) {
-        alert("Please select at least one skill.");
-        return;
+    .progress-panel{
+        margin-top:18px;
     }
 
-    showPage("level");
-}
-
-
-/* =====================================
-   LEVEL
-===================================== */
-
-function selectLevel(element, level) {
-
-    document.querySelectorAll(".level").forEach(function(item) {
-        item.classList.remove("selected");
-    });
-
-    element.classList.add("selected");
-
-    selectedLevel = level;
-}
-
-
-function goTime() {
-
-    if (selectedLevel === "") {
-        alert("Please select your current level.");
-        return;
-    }
-
-    showPage("time");
-}
-
-
-/* =====================================
-   TIME
-===================================== */
-
-function selectTime(element, time) {
-
-    document.querySelectorAll(".time").forEach(function(item) {
-        item.classList.remove("selected");
-    });
-
-    element.classList.add("selected");
-
-    selectedTime = time;
-}
-
-
-function goInterests() {
-
-    if (selectedTime === "") {
-        alert("Please select your available learning time.");
-        return;
-    }
-
-    showPage("interests");
-}
-
-
-/* =====================================
-   INTERESTS
-===================================== */
-
-function toggleInterest(element) {
-
-    const interest = element.innerText.trim();
-
-    element.classList.toggle("selected");
-
-    if (element.classList.contains("selected")) {
-
-        if (!selectedInterests.includes(interest)) {
-            selectedInterests.push(interest);
-        }
-
-    } else {
-
-        selectedInterests =
-            selectedInterests.filter(function(item) {
-                return item !== interest;
-            });
-    }
-}
-
-
-function finishSetup() {
-
-    if (selectedInterests.length === 0) {
-        alert("Please select at least one interest.");
-        return;
-    }
-
-    document.getElementById("resultGoal").innerText =
-        selectedGoal;
-
-    document.getElementById("resultLevel").innerText =
-        selectedLevel;
-
-    document.getElementById("resultTime").innerText =
-        selectedTime;
-
-    document.getElementById("resultSkills").innerText =
-        selectedSkills.length + " selected";
-
-    showPage("result");
-}
-
-
-/* =====================================
-   ASSESSMENT
-===================================== */
-
-function startAssessment() {
-
-    currentQuestion = 0;
-
-    answers =
-        new Array(questions.length).fill(null);
-
-    showPage("assessment");
-
-    loadQuestion();
-}
-
-
-function loadQuestion() {
-
-    const question =
-        questions[currentQuestion];
-
-    document.getElementById("questionCounter").innerText =
-        "Question " +
-        (currentQuestion + 1) +
-        " of " +
-        questions.length;
-
-    document.getElementById("questionText").innerText =
-        question.question;
-
-    const optionsBox =
-        document.getElementById("options");
-
-    optionsBox.innerHTML = "";
-
-    question.options.forEach(function(option, index) {
-
-        const button =
-            document.createElement("button");
-
-        button.className = "option";
-
-        button.innerText =
-            String.fromCharCode(65 + index) +
-            ". " +
-            option;
-
-        button.onclick = function() {
-            selectAnswer(index);
-        };
-
-        if (answers[currentQuestion] === index) {
-            button.classList.add("selected");
-        }
-
-        optionsBox.appendChild(button);
-    });
-
-    const progress =
-        ((currentQuestion + 1) /
-        questions.length) * 100;
-
-    document.getElementById("progressBar").style.width =
-        progress + "%";
-
-    document.getElementById("prevBtn").style.visibility =
-        currentQuestion === 0
-        ? "hidden"
-        : "visible";
-
-    document.getElementById("nextBtn").innerText =
-        currentQuestion === questions.length - 1
-        ? "Finish Assessment ✓"
-        : "Next →";
-}
-
-
-function selectAnswer(index) {
-
-    answers[currentQuestion] = index;
-
-    document.querySelectorAll(".option").forEach(
-        function(option, index2) {
-
-            option.classList.toggle(
-                "selected",
-                index2 === index
-            );
-
-        }
-    );
-}
-
-
-function nextQuestion() {
-
-    if (answers[currentQuestion] === null) {
-        alert("Please select an answer first.");
-        return;
-    }
-
-    if (currentQuestion < questions.length - 1) {
-
-        currentQuestion++;
-
-        loadQuestion();
-
-    } else {
-
-        finishAssessment();
-    }
-}
-
-
-function previousQuestion() {
-
-    if (currentQuestion > 0) {
-
-        currentQuestion--;
-
-        loadQuestion();
-    }
-}
-
-
-function finishAssessment() {
-
-    let correct = 0;
-
-    let weakSkills = [];
-
-    questions.forEach(function(question, index) {
-
-        if (answers[index] === question.answer) {
-
-            correct++;
-
-        } else {
-
-            if (!weakSkills.includes(question.skill)) {
-                weakSkills.push(question.skill);
-            }
-        }
-
-    });
-
-    const percentage =
-        Math.round(
-            (correct / questions.length) * 100
-        );
-
-    let level;
-
-    if (percentage >= 80) {
-
-        level = "Advanced";
-
-    } else if (percentage >= 50) {
-
-        level = "Intermediate";
-
-    } else {
-
-        level = "Beginner";
-    }
-
-    document.getElementById("scoreNumber").innerText =
-        percentage + "%";
-
-    document.getElementById("assessmentLevel").innerText =
-        level;
-
-    document.getElementById("correctCount").innerText =
-        correct;
-
-    document.getElementById("wrongCount").innerText =
-        questions.length - correct;
-
-    document.getElementById("focusCount").innerText =
-        weakSkills.length;
-
-    document.getElementById("weakTopics").innerText =
-        weakSkills.length
-        ? weakSkills.join(" • ")
-        : "Excellent! No major focus areas found.";
-
-    document.getElementById("assessmentMessage").innerText =
-        getAssessmentMessage(percentage);
-
-    xp += correct * 10;
-
-    showPage("assessmentResult");
-}
-
-
-function getAssessmentMessage(score) {
-
-    if (score >= 80) {
-
-        return "Excellent foundation! Your roadmap can focus on advanced skills and projects.";
-
-    }
-
-    if (score >= 50) {
-
-        return "Good foundation! Your roadmap will strengthen your weak areas and build practical skills.";
-
-    }
-
-    return "We'll start with the fundamentals and gradually build your skills through practice and projects.";
-}
-
-
-/* =====================================
-   ROADMAP
-===================================== */
-
-function getRoadmap(goal) {
-
-    if (goal === "Web Development") {
-
-        return [
-
-            {
-                title: "HTML & CSS Foundations",
-                description:
-                    "Build webpage structure, styling and responsive layouts."
-            },
-
-            {
-                title: "JavaScript Fundamentals",
-                description:
-                    "Learn variables, functions, arrays, objects and DOM interaction."
-            },
-
-            {
-                title: "Git & GitHub",
-                description:
-                    "Learn version control and publish your projects."
-            },
-
-            {
-                title: "Frontend Projects",
-                description:
-                    "Build real websites using HTML, CSS and JavaScript."
-            },
-
-            {
-                title: "Advanced Web Development",
-                description:
-                    "Explore APIs, frameworks and full-stack development."
-            }
-
-        ];
-    }
-
-
-    if (goal === "AI / ML") {
-
-        return [
-
-            {
-                title: "Python Foundations",
-                description:
-                    "Learn Python syntax, functions, collections and problem solving."
-            },
-
-            {
-                title: "Data Handling",
-                description:
-                    "Learn NumPy, Pandas and basic data analysis."
-            },
-
-            {
-                title: "Machine Learning Basics",
-                description:
-                    "Understand datasets, models, training and evaluation."
-            },
-
-            {
-                title: "ML Projects",
-                description:
-                    "Build beginner-friendly machine learning projects."
-            },
-
-            {
-                title: "Advanced AI",
-                description:
-                    "Explore deep learning and real-world AI applications."
-            }
-
-        ];
-    }
-
-
-    if (goal === "Data Science") {
-
-        return [
-
-            {
-                title: "Python for Data",
-                description:
-                    "Learn Python fundamentals for data work."
-            },
-
-            {
-                title: "Statistics",
-                description:
-                    "Understand probability, averages and distributions."
-            },
-
-            {
-                title: "Pandas & Data Analysis",
-                description:
-                    "Clean and analyze datasets."
-            },
-
-            {
-                title: "Data Visualization",
-                description:
-                    "Create useful charts and communicate insights."
-            },
-
-            {
-                title: "Data Science Projects",
-                description:
-                    "Solve real-world problems using datasets."
-            }
-
-        ];
-    }
-
-
-    if (goal === "Cybersecurity") {
-
-        return [
-
-            {
-                title: "Computer Fundamentals",
-                description:
-                    "Understand operating systems and computing basics."
-            },
-
-            {
-                title: "Networking",
-                description:
-                    "Learn IP addresses, protocols, ports and networks."
-            },
-
-            {
-                title: "Linux Fundamentals",
-                description:
-                    "Build command-line and system administration skills."
-            },
-
-            {
-                title: "Security Fundamentals",
-                description:
-                    "Learn authentication, vulnerabilities and defensive concepts."
-            },
-
-            {
-                title: "Security Projects",
-                description:
-                    "Practice cybersecurity concepts in safe environments."
-            }
-
-        ];
-    }
-
-
-    return [
-
-        {
-            title: "Fundamentals",
-            description:
-                "Build the basic concepts required for your career goal."
-        },
-
-        {
-            title: "Core Skills",
-            description:
-                "Develop the essential skills used in your chosen field."
-        },
-
-        {
-            title: "Practice",
-            description:
-                "Solve exercises and strengthen your understanding."
-        },
-
-        {
-            title: "Mini Projects",
-            description:
-                "Apply your knowledge by building practical projects."
-        },
-
-        {
-            title: "Advanced Skills",
-            description:
-                "Move toward advanced topics and real-world work."
-        }
-
-    ];
-}
-
-
-/* =====================================
-   RENDER ROADMAP
-===================================== */
-
-function renderRoadmap() {
-
-    const roadmap =
-        document.getElementById("roadmapList");
-
-    if (!roadmap) {
-        return;
-    }
-
-    roadmap.innerHTML = "";
-
-    const data =
-        getRoadmap(selectedGoal);
-
-    document.getElementById("roadmapTitle").innerText =
-        selectedGoal + " Roadmap";
-
-    document.getElementById("roadmapSubtitle").innerText =
-        "Your personalized path from fundamentals to real-world projects.";
-
-    data.forEach(function(item, index) {
-
-        const isCompleted =
-            completedSkills.includes(index);
-
-        const isCurrent =
-            !isCompleted &&
-            index === completedSkills.length;
-
-        const div =
-            document.createElement("div");
-
-        div.className =
-            "roadmap-item " +
-            (isCompleted ? "completed " : "") +
-            (isCurrent ? "current" : "");
-
-        let status = "🔒 Locked";
-
-        if (isCompleted) {
-
-            status = "✅ Completed";
-
-        } else if (isCurrent) {
-
-            status = "🔵 In Progress";
-        }
-
-        div.innerHTML = `
-
-            <div class="roadmap-number">
-                ${isCompleted ? "✓" : index + 1}
-            </div>
-
-            <div style="flex:1">
-
-                <h3>${item.title}</h3>
-
-                <p>${item.description}</p>
-
-                <span class="skill-status">
-                    ${status}
-                </span>
-
-                ${
-                    isCurrent
-                    ? `
-                        <br>
-
-                        <button
-                            class="roadmap-action"
-                            onclick="completeSkill(${index})">
-
-                            Complete Skill +100 XP
-
-                        </button>
-                    `
-                    : ""
-                }
-
-            </div>
-        `;
-
-        roadmap.appendChild(div);
-    });
-}
-
-
-/* =====================================
-   COMPLETE SKILL
-===================================== */
-
-function completeSkill(index) {
-
-    if (index !== completedSkills.length) {
-
-        alert(
-            "Complete the previous skill first."
-        );
-
-        return;
-    }
-
-    completedSkills.push(index);
-
-    xp += 100;
-
-    updateDashboard();
-
-    renderRoadmap();
-}
-
-
-/* =====================================
-   PROGRESS
-===================================== */
-
-function getProgress() {
-
-    const total =
-        getRoadmap(selectedGoal).length;
-
-    if (total === 0) {
-        return 0;
-    }
-
-    return Math.round(
-        (completedSkills.length / total) * 100
-    );
-}
-
-
-/* =====================================
-   DASHBOARD
-===================================== */
-
-function updateDashboard() {
-
-    const progress =
-        getProgress();
-
-    const xpValue =
-        document.getElementById("xpValue");
-
-    if (xpValue) {
-        xpValue.innerText = xp;
-    }
-
-    const streakValue =
-        document.getElementById("streakValue");
-
-    if (streakValue) {
-        streakValue.innerText =
-            streak + " day";
-    }
-
-    const progressValue =
-        document.getElementById("progressValue");
-
-    if (progressValue) {
-        progressValue.innerText =
-            progress + "%";
-    }
-
-    const progressPercent =
-        document.getElementById("progressPercent");
-
-    if (progressPercent) {
-        progressPercent.innerText =
-            progress + "%";
-    }
-
-    const dashboardProgress =
-        document.getElementById("dashboardProgress");
-
-    if (dashboardProgress) {
-        dashboardProgress.style.width =
-            progress + "%";
-    }
-
-    const dashboardGoal =
-        document.getElementById("dashboardGoal");
-
-    if (dashboardGoal) {
-
-        dashboardGoal.innerText =
-            selectedGoal
-            ? selectedGoal + " · " + selectedLevel
-            : "Complete your setup to begin.";
-    }
-
-    const badgeValue =
-        document.getElementById("badgeValue");
-
-    if (badgeValue) {
-        badgeValue.innerText =
-            getBadgeCount();
-    }
-
-    updateMission();
-
-    updateBadges();
-}
-
-
-/* =====================================
-   DAILY MISSION
-===================================== */
-
-function updateMission() {
-
-    const missionTitle =
-        document.getElementById("missionTitle");
-
-    const missionDescription =
-        document.getElementById("missionDescription");
-
-    const missionTime =
-        document.getElementById("missionTime");
-
-    if (!missionTitle || !missionDescription) {
-        return;
-    }
-
-    if (!selectedGoal) {
-
-        missionTitle.innerText =
-            "Complete your profile";
-
-        missionDescription.innerText =
-            "Set your goal, skills and interests to unlock your daily mission.";
-
-        return;
-    }
-
-    const roadmap =
-        getRoadmap(selectedGoal);
-
-    const current =
-        completedSkills.length;
-
-    if (current >= roadmap.length) {
-
-        missionTitle.innerText =
-            "🏆 Roadmap Complete!";
-
-        missionDescription.innerText =
-            "You completed your current learning roadmap. Great work!";
-
-        if (missionTime) {
-            missionTime.innerText = "Done";
-        }
-
-        return;
-    }
-
-    missionTitle.innerText =
-        roadmap[current].title;
-
-    missionDescription.innerText =
-        roadmap[current].description;
-
-    if (missionTime) {
-        missionTime.innerText =
-            selectedTime || "15 min";
+    .career-grid{
+        grid-template-columns:1fr 1fr;
     }
 }
 
 
-function completeMission() {
+@media(max-width:800px){
 
-    if (!selectedGoal) {
-
-        alert(
-            "Complete your profile first."
-        );
-
-        return;
+    .topbar{
+        gap:10px;
     }
 
-    const progress =
-        getProgress();
-
-    if (progress >= 100) {
-
-        alert(
-            "Your roadmap is already complete! 🏆"
-        );
-
-        return;
+    .brand{
+        width:auto;
     }
 
-    xp += 50;
-
-    streak++;
-
-    updateDashboard();
-
-    alert(
-        "Mission completed! +50 XP 🎉"
-    );
-}
-
-
-/* =====================================
-   BADGES
-===================================== */
-
-function getBadgeCount() {
-
-    let count = 0;
-
-    if (completedSkills.length >= 1) {
-        count++;
+    .search{
+        display:none;
     }
 
-    if (completedSkills.length >= 3) {
-        count++;
+    .sidebar{
+        width:70px;
+        padding:15px 8px;
     }
 
-    if (streak >= 3) {
-        count++;
+    .side-link{
+        justify-content:center;
+        padding:12px 5px;
     }
 
-    if (getProgress() >= 100) {
-        count++;
+    .side-link span{
+        display:none;
     }
 
-    return count;
-}
-
-
-function updateBadges() {
-
-    const first =
-        document.getElementById("badgeFirst");
-
-    if (!first) {
-        return;
+    .sidebar-bottom{
+        display:none;
     }
 
-    if (completedSkills.length >= 1) {
-        first.classList.add("unlocked");
+    .two-column{
+        grid-template-columns:1fr;
+    }
+
+    .right-column{
+        grid-template-columns:1fr;
+    }
+
+    .mission-art{
+        display:none;
+    }
+
+    .career-grid{
+        grid-template-columns:1fr 1fr;
     }
 }
 
 
-/* =====================================
-   START APP
-===================================== */
+@media(max-width:550px){
 
-document.addEventListener("DOMContentLoaded", function() {
-
-    const pages =
-        document.querySelectorAll(".page");
-
-    if (pages.length > 0) {
-
-        pages.forEach(function(page) {
-            page.classList.remove("active");
-        });
-
-        const home =
-            document.getElementById("home");
-
-        if (home) {
-            home.classList.add("active");
-        }
+    .top-actions button{
+        display:none;
     }
 
-});
+    .profile-mini div:last-child{
+        display:none;
+    }
+
+    .dashboard-wrap{
+        padding:13px;
+    }
+
+    .welcome-row{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .quote{
+        width:100%;
+    }
+
+    .mission-info{
+        gap:10px;
+        flex-wrap:wrap;
+    }
+
+    .mission-info div{
+        font-size:15px;
+    }
+
+    .career-grid{
+        grid-template-columns:1fr;
+    }
+
+    .gap-grid{
+        grid-template-columns:1fr;
+    }
+
+    .gap-grid > div{
+        border-right:0;
+        border-bottom:1px solid #243957;
+        padding:10px;
+    }
+
+    .mini-roadmap{
+        justify-content:flex-start;
+    }
+       }
