@@ -1,3 +1,35 @@
+let userName = localStorage.getItem("skillpilotUserName");
+
+if (!userName) {
+    userName = prompt("Welcome to SkillPilot! Enter your name:");
+
+    if (!userName || userName.trim() === "") {
+        userName = "Student";
+    }
+
+    userName = userName.trim();
+
+    localStorage.setItem("skillpilotUserName", userName);
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    const greetingName =
+        document.getElementById("userName");
+
+    const topName =
+        document.getElementById("topUserName");
+
+    if(greetingName){
+        greetingName.innerText = userName;
+    }
+
+    if(topName){
+        topName.innerText = userName;
+    }
+
+});
+
 let xp = 320;
 let streak = 5;
 let progress = 42;
