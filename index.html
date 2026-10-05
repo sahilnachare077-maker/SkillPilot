@@ -1,842 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>SkillPilot — Your Skills. Your Future.</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillPilot</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header class="topbar">
+  <div class="logo">✦</div>
 
-    <div class="brand">
-        <div class="brand-icon">✦</div>
-
-        <div>
-            <strong>SkillPilot</strong>
-            <small>Your Skills. Your Future.</small>
-        </div>
+  <div class="top-actions">
+    <button>🔔</button>
+    <button>☼</button>
+    <div class="user-mini">
+      <div class="avatar" id="avatar">S</div>
+      <div>
+        <b id="topUserName">Student</b>
+        <span>Student</span>
+      </div>
     </div>
-
-    <div class="search">
-        🔍
-        <input
-            type="text"
-            placeholder="Search skills, resources, projects..."
-        >
-    </div>
-
-    <div class="top-actions">
-
-        <button>🔔</button>
-        <button>☼</button>
-
-        <div class="profile-mini">
-
-            <div class="avatar">
-                <span id="userInitial">S</span>
-            </div>
-
-            <div>
-                <b id="topUserName">Student</b>
-                <small>Student</small>
-            </div>
-
-        </div>
-
-    </div>
-
+  </div>
 </header>
-
 
 <div class="app">
 
 <aside class="sidebar">
 
-    <button class="side-link active" onclick="showPage('home')">
-        🏠 <span>Home</span>
-    </button>
-
-    <button class="side-link" onclick="showPage('profile')">
-        👤 <span>Profile</span>
-    </button>
-
-    <button class="side-link" onclick="showPage('assessment')">
-        ☑ <span>Assessment</span>
-    </button>
-
-    <button class="side-link" onclick="showPage('roadmap')">
-        ◈ <span>Roadmap</span>
-    </button>
-
-    <button class="side-link" onclick="showPage('skillsPage')">
-        ◇ <span>Skills</span>
-    </button>
-
-    <button class="side-link">
-        ▣ <span>Resources</span>
-    </button>
-
-    <button class="side-link">
-        ⚒ <span>Practice</span>
-    </button>
-
-    <button class="side-link">
-        💼 <span>Projects</span>
-    </button>
-
-    <button class="side-link">
-        ▣ <span>Planner</span>
-    </button>
-
-    <button class="side-link" onclick="showPage('dashboard')">
-        ◉ <span>Dashboard</span>
-    </button>
-
-    <button class="side-link">
-        🚀 <span>Career</span>
-    </button>
-
-    <button class="side-link">
-        ◫ <span>Portfolio</span>
-    </button>
-
-    <button class="side-link">
-        ☆ <span>Achievements</span>
-    </button>
-
-
-    <div class="sidebar-bottom">
-
-        <div class="rocket">🚀</div>
-
-        <h3>
-            Small steps<br>
-            every day lead to<br>
-            big results!
-        </h3>
-
-        <div class="xp-bar">
-            <div id="sideXPBar"></div>
-        </div>
-
-        <small>Level 3 · Explorer</small>
-
-        <b id="sideXP">320 / 500 XP</b>
-
-    </div>
+  <button class="side-btn active" onclick="showPage('home')">🏠</button>
+  <button class="side-btn" onclick="showPage('profile')">👤</button>
+  <button class="side-btn" onclick="showPage('assessment')">☑</button>
+  <button class="side-btn" onclick="showPage('roadmap')">◇</button>
+  <button class="side-btn" onclick="showPage('skills')">◇</button>
+  <button class="side-btn" onclick="showPage('practice')">▣</button>
+  <button class="side-btn" onclick="showPage('projects')">🛠</button>
+  <button class="side-btn" onclick="showPage('planner')">💼</button>
+  <button class="side-btn" onclick="showPage('dashboard')">▣</button>
+  <button class="side-btn" onclick="showPage('career')">◉</button>
+  <button class="side-btn" onclick="showPage('portfolio')">🚀</button>
+  <button class="side-btn" onclick="showPage('achievements')">☆</button>
 
 </aside>
 
+<main class="content">
 
-<main>
+<!-- HOME -->
+<section id="home" class="page active-page">
 
-<section id="home" class="page active">
+  <h1>Good Morning, <span id="userName">Student</span>! 👋</h1>
+  <p class="subtitle">Keep going! You're one step closer to your goals.</p>
 
-<div class="dashboard-wrap">
+  <div class="mission-card">
+    <div class="small-title">🎯 Today's Mission</div>
 
-    <div class="welcome-row">
+    <h2>Learn: Pandas DataFrame</h2>
 
-        <div>
-
-            <h1>
-                Good Morning,
-                <span id="userName">Student</span>! 👋
-            </h1>
-
-            <p>
-                Keep going! You're one step closer to your goals.
-            </p>
-
-        </div>
-
-        <div class="quote">
-
-            “The best way to predict<br>
-            your future is to create it.”
-
-            <small>— Abraham Lincoln</small>
-
-        </div>
-
+    <div class="mission-info">
+      <div>◷ <span>Estimated time<br><b>35 min</b></span></div>
+      <div>&lt;/&gt; <span>Practice<br><b>3 questions</b></span></div>
+      <div>▤ <span>Mini task<br><b>Analyze a CSV file</b></span></div>
+      <div>⭐ <span>XP<br><b>+50</b></span></div>
     </div>
 
-
-    <div class="main-grid">
-
-        <div class="content">
-
-
-            <div class="mission-card">
-
-                <div class="mission-content">
-
-                    <span class="eyebrow">
-                        🎯 Today's Mission
-                    </span>
-
-                    <h2>
-                        Learn: Pandas DataFrame
-                    </h2>
-
-                    <div class="mission-info">
-
-                        <div>
-                            ◷
-                            <span>
-                                Estimated time<br>
-                                <b>35 min</b>
-                            </span>
-                        </div>
-
-                        <div>
-                            ‹/›
-                            <span>
-                                Practice<br>
-                                <b>3 questions</b>
-                            </span>
-                        </div>
-
-                        <div>
-                            ▤
-                            <span>
-                                Mini task<br>
-                                <b>Analyze a CSV file</b>
-                            </span>
-                        </div>
-
-                        <div>
-                            ⭐
-                            <span>
-                                XP<br>
-                                <b>+50</b>
-                            </span>
-                        </div>
-
-                    </div>
-
-                    <button
-                        class="primary"
-                        onclick="completeMission()"
-                    >
-                        Start Learning →
-                    </button>
-
-                </div>
-
-                <div class="mission-art">
-                    <div class="python">🐍</div>
-                    <div class="student-art">👨‍💻</div>
-                    <div class="chart-art">📊</div>
-                </div>
-
-            </div>
-
-
-            <div class="panel">
-
-                <div class="panel-heading">
-
-                    <b>🗺️ Your Personalized Roadmap</b>
-
-                    <button onclick="showPage('roadmap')">
-                        View All →
-                    </button>
-
-                </div>
-
-
-                <div class="mini-roadmap">
-
-                    <div class="road-step completed">
-                        <div class="circle">✓</div>
-                        <b>Python</b>
-                        <small>✓ Completed</small>
-                    </div>
-
-                    <i>→</i>
-
-                    <div class="road-step completed">
-                        <div class="circle">✓</div>
-                        <b>NumPy</b>
-                        <small>✓ Completed</small>
-                    </div>
-
-                    <i>→</i>
-
-                    <div class="road-step current">
-                        <div class="circle">➤</div>
-                        <b>Pandas</b>
-                        <small>• In Progress</small>
-                    </div>
-
-                    <i>→</i>
-
-                    <div class="road-step locked">
-                        <div class="circle">🔒</div>
-                        <b>Statistics</b>
-                        <small>Locked</small>
-                    </div>
-
-                    <i>→</i>
-
-                    <div class="road-step locked">
-                        <div class="circle">🔒</div>
-                        <b>Machine Learning</b>
-                        <small>Locked</small>
-                    </div>
-
-                    <i>→</i>
-
-                    <div class="road-step locked">
-                        <div class="circle">🔒</div>
-                        <b>Projects</b>
-                        <small>Locked</small>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="two-column">
-
-                <div class="panel">
-
-                    <div class="panel-heading">
-
-                        <b>🎯 Skill Gap Analysis</b>
-
-                        <button>Details →</button>
-
-                    </div>
-
-                    <div class="gap-grid">
-
-                        <div>
-                            <span class="big-icon">🎯</span>
-                            <small>Your Goal</small>
-                            <strong>AI / ML</strong>
-                        </div>
-
-                        <div>
-                            <span class="big-icon">🟢</span>
-                            <small>You Know</small>
-                            <strong>Python, C</strong>
-                        </div>
-
-                        <div>
-                            <span class="big-icon">🚨</span>
-                            <small>Missing</small>
-                            <strong>
-                                Statistics,<br>
-                                Pandas, ML
-                            </strong>
-                        </div>
-
-                    </div>
-
-                    <button class="primary small">
-                        View Detailed Analysis →
-                    </button>
-
-                </div>
-
-
-                <div class="panel">
-
-                    <div class="panel-heading">
-
-                        <b>🚀 Recommended Projects</b>
-
-                        <button>View All →</button>
-
-                    </div>
-
-                    <div class="project-card">
-
-                        <div class="project-icon">▦</div>
-
-                        <div>
-
-                            <h3>
-                                Student Performance Analyzer
-                            </h3>
-
-                            <div class="tags">
-                                <span>Python</span>
-                                <span>Pandas</span>
-                                <span>Matplotlib</span>
-                                <span>+1</span>
-                            </div>
-
-                            <p>
-                                Analyze student data and find
-                                insights using Python and Pandas.
-                            </p>
-
-                            <small>
-                                Difficulty: <b>Medium</b>
-                                · Est. Time: 2-3 weeks
-                            </small>
-
-                            <br>
-
-                            <button class="primary tiny">
-                                View Project →
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="two-column">
-
-                <div class="panel">
-
-                    <div class="panel-heading">
-
-                        <b>📚 Your Skills</b>
-
-                        <button>View All →</button>
-
-                    </div>
-
-                    <div class="skill-cards">
-
-                        <div class="user-skill">
-                            <span>✓</span>
-                            Python
-                            <small>Advanced</small>
-                        </div>
-
-                        <div class="user-skill">
-                            <span>✓</span>
-                            C
-                            <small>Intermediate</small>
-                        </div>
-
-                        <div class="user-skill">
-                            <span>✓</span>
-                            HTML & CSS
-                            <small>Intermediate</small>
-                        </div>
-
-                        <div class="user-skill beginner">
-                            <span>◉</span>
-                            JavaScript
-                            <small>Beginner</small>
-                        </div>
-
-                    </div>
-
-                    <div class="more-skills">
-                        +14 more skills
-                    </div>
-
-                </div>
-
-
-                <div class="panel">
-
-                    <div class="panel-heading">
-
-                        <b>🏆 Gamification</b>
-
-                        <button>View All →</button>
-
-                    </div>
-
-                    <div class="game-grid">
-
-                        <div>
-                            <span>◉</span>
-                            <b>Level 3</b>
-                            <small>Explorer</small>
-                        </div>
-
-                        <div>
-                            <span>🔥</span>
-                            <b id="gameStreak">5 Day</b>
-                            <small>Streak</small>
-                        </div>
-
-                        <div>
-                            <span>🏅</span>
-                            <b id="badgeValue">2</b>
-                            <small>Badges</small>
-                        </div>
-
-                    </div>
-
-                    <div class="level-progress">
-                        <div id="levelProgress"></div>
-                    </div>
-
-                    <small class="xp-text">
-                        <span id="currentXP">320</span> / 500 XP
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <div class="panel career-panel">
-
-                <div class="panel-heading">
-
-                    <div>
-                        <b>🧭 Career Paths</b>
-                        <small>
-                            Explore different career options with your skills.
-                        </small>
-                    </div>
-
-                    <button>View All →</button>
-
-                </div>
-
-
-                <div class="career-grid">
-
-                    <div class="career">
-                        <span>◈</span>
-                        <b>AI / ML</b>
-                        <small>Data Scientist, ML Engineer</small>
-                        <button>View Path →</button>
-                    </div>
-
-                    <div class="career">
-                        <span>▣</span>
-                        <b>Web Development</b>
-                        <small>Frontend, Backend, Full Stack</small>
-                        <button>View Path →</button>
-                    </div>
-
-                    <div class="career">
-                        <span>⬢</span>
-                        <b>Cybersecurity</b>
-                        <small>Security Analyst, Ethical Hacker</small>
-                        <button>View Path →</button>
-                    </div>
-
-                    <div class="career">
-                        <span>▥</span>
-                        <b>Data Analytics</b>
-                        <small>Data Analyst, Business Analyst</small>
-                        <button>View Path →</button>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <aside class="right-column">
-
-            <div class="panel progress-panel">
-
-                <h2>Your Progress</h2>
-
-                <div class="progress-ring">
-
-                    <div>
-                        <b id="progressValue">42%</b>
-                        <small>Overall Completion</small>
-                    </div>
-
-                </div>
-
-                <div class="progress-stat">
-                    <span>⚙️ Skills Completed</span>
-                    <b>8 / 19</b>
-                </div>
-
-                <div class="progress-stat">
-                    <span>💎 Projects Completed</span>
-                    <b>2 / 5</b>
-                </div>
-
-                <div class="progress-stat">
-                    <span>🔥 Learning Streak</span>
-                    <b id="streakValue">5 days</b>
-                </div>
-
-                <div class="progress-stat">
-                    <span>◷ Study Hours</span>
-                    <b>24.5 hrs</b>
-                </div>
-
-            </div>
-
-
-            <div class="panel">
-
-                <div class="panel-heading">
-
-                    <b>Today's Plan</b>
-
-                    <button>View Calendar →</button>
-
-                </div>
-
-                <label class="check-item checked">
-                    <input type="checkbox" checked>
-                    <span>
-                        Pandas DataFrame
-                        <small>(35 min)</small>
-                    </span>
-                </label>
-
-                <label class="check-item">
-                    <input type="checkbox">
-                    <span>
-                        Practice Questions
-                        <small>(20 min)</small>
-                    </span>
-                </label>
-
-                <label class="check-item">
-                    <input type="checkbox">
-                    <span>
-                        Mini Project
-                        <small>(45 min)</small>
-                    </span>
-                </label>
-
-                <label class="check-item">
-                    <input type="checkbox">
-                    <span>
-                        Update Portfolio
-                        <small>(15 min)</small>
-                    </span>
-                </label>
-
-            </div>
-
-
-            <div class="panel">
-
-                <div class="panel-heading">
-                    <b>⚡ Quick Actions</b>
-                </div>
-
-                <div class="quick-grid">
-
-                    <button>
-                        ⚒
-                        <span>Start<br>Practice</span>
-                    </button>
-
-                    <button>
-                        ▣
-                        <span>Explore<br>Resources</span>
-                    </button>
-
-                    <button>
-                        ⚙
-                        <span>Ask AI<br>Assistant</span>
-                    </button>
-
-                    <button>
-                        🔔
-                        <span>Set<br>Reminder</span>
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="panel">
-
-                <div class="panel-heading">
-                    <b>Your Journey</b>
-                </div>
-
-                <div class="journey">
-
-                    <div>
-                        <span>🟢</span>
-                        <p>
-                            <b>Completed Python Basics</b>
-                            <small>2 days ago</small>
-                        </p>
-                    </div>
-
-                    <div>
-                        <span>🔵</span>
-                        <p>
-                            <b>Started Pandas Learning</b>
-                            <small>1 day ago</small>
-                        </p>
-                    </div>
-
-                    <div>
-                        <span>🩷</span>
-                        <p>
-                            <b>Completed Quiz: Python</b>
-                            <small>3 days ago</small>
-                        </p>
-                    </div>
-
-                    <div>
-                        <span>◼</span>
-                        <p>
-                            <b>Added Project: Portfolio Website</b>
-                            <small>4 days ago</small>
-                        </p>
-                    </div>
-
-                    <div>
-                        <span>🏆</span>
-                        <p>
-                            <b>Reached Level 3</b>
-                            <small>5 days ago</small>
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="motivation">
-
-                <div>🚩</div>
-
-                <h2>Keep going!</h2>
-
-                <p>
-                    Your future self will<br>
-                    thank you. ❤️
-                </p>
-
-            </div>
-
-        </aside>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<section id="profile" class="page simple-page">
-
-    <h1>Your Profile</h1>
-
-    <p>
-        Welcome,
-        <span id="profileUserName">Student</span>.
-    </p>
-
-    <div class="dashboard-big-card">
-
-        <h2>Student Profile</h2>
-
-        <p>
-            Name:
-            <b id="profileName">Student</b>
-        </p>
-
-        <p>Role: Student</p>
-
-    </div>
-
-</section>
-
-
-<section id="assessment" class="page simple-page">
-
-    <h1>Skill Assessment</h1>
-
-    <p>Test your current technical knowledge.</p>
-
-    <button class="primary" onclick="startAssessment()">
-        Start Assessment →
+    <button class="primary-btn" onclick="startLearning()">
+      Start Learning →
     </button>
 
-</section>
+    <div class="mission-icons">🐍 👨‍💻 📊</div>
+  </div>
 
-
-<section id="roadmap" class="page simple-page">
-
-    <h1>Your Roadmap</h1>
-
-    <p>Your personalized learning journey.</p>
-
-    <div id="roadmapList" class="full-roadmap"></div>
-
-</section>
-
-
-<section id="skillsPage" class="page simple-page">
-
-    <h1>Your Skills</h1>
-
-    <p>Track and improve your technical skills.</p>
-
-    <div class="large-skill-grid">
-
-        <div>🐍 Python <b>Advanced</b></div>
-        <div>💻 C <b>Intermediate</b></div>
-        <div>🌐 HTML & CSS <b>Intermediate</b></div>
-        <div>⚡ JavaScript <b>Beginner</b></div>
-        <div>📊 Pandas <b>Beginner</b></div>
-        <div>🧠 Machine Learning <b>Locked</b></div>
-
+  <div class="card roadmap-preview">
+    <div class="card-head">
+      <h2>🗺️ Your Personalized Roadmap</h2>
+      <button onclick="showPage('roadmap')">View All →</button>
     </div>
 
+    <div class="roadmap-row">
+      <div class="roadmap-node">
+        <div class="check">✓</div>
+        <b>Python</b>
+        <span>✓ Completed</span>
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="roadmap-node">
+        <div class="check">✓</div>
+        <b>NumPy</b>
+        <span>✓ Completed</span>
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="roadmap-node">
+        <div class="check current">→</div>
+        <b>Pandas</b>
+        <span>● In Progress</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h2>📈 Your Progress</h2>
+      <p>Overall Learning</p>
+      <div class="progress"><div style="width:65%"></div></div>
+      <b>65%</b>
+    </div>
+
+    <div class="card">
+      <h2>🔥 Learning Streak</h2>
+      <div class="big-number">7</div>
+      <p>days in a row</p>
+    </div>
+
+    <div class="card">
+      <h2>⭐ XP Points</h2>
+      <div class="big-number" id="xp">350</div>
+      <p>Keep learning to earn more.</p>
+    </div>
+
+  </div>
+
 </section>
 
+
+<!-- LEARNING -->
+<section id="learning" class="page">
+
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+
+  <div class="learning-hero">
+    <span>🐼 PYTHON</span>
+    <h1>Pandas DataFrame</h1>
+    <p>Learn how to work with structured data using Pandas.</p>
+  </div>
+
+  <div class="lesson-grid">
+
+    <div class="lesson-card">
+      <h2>📚 Learn</h2>
+      <p>
+        A DataFrame is a two-dimensional data structure in Pandas.
+        It stores data in rows and columns, similar to a table.
+      </p>
+
+      <div class="code-box">
+        import pandas as pd<br><br>
+        df = pd.read_csv("data.csv")<br>
+        print(df.head())
+      </div>
+    </div>
+
+    <div class="lesson-card">
+      <h2>🧠 Practice</h2>
+      <p>Try these quick questions.</p>
+
+      <button class="question-btn" onclick="practiceAnswer(this)">
+        What library is commonly used for DataFrames?
+      </button>
+
+      <button class="question-btn" onclick="practiceAnswer(this)">
+        Which function reads a CSV file?
+      </button>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <h2>🚀 Mini Project</h2>
+    <p>Load a CSV file and find the average value of one column.</p>
+    <button class="primary-btn" onclick="completeLearning()">
+      Complete Learning ✓
+    </button>
+  </div>
+
+</section>
+
+
+<!-- PROFILE -->
+<section id="profile" class="page">
+  <h1>👤 Profile</h1>
+
+  <div class="profile-card">
+    <div class="profile-avatar" id="profileAvatar">S</div>
+    <h2 id="profileName">Student</h2>
+    <p>SkillPilot Learner</p>
+  </div>
+
+  <div class="card">
+    <h2>Learning Statistics</h2>
+    <p>XP: <b id="profileXP">350</b></p>
+    <p>Current streak: <b>7 days</b></p>
+    <p>Roadmap progress: <b>65%</b></p>
+  </div>
+</section>
+
+
+<!-- ASSESSMENT -->
+<section id="assessment" class="page">
+
+  <h1>📝 Skill Assessment</h1>
+  <p class="subtitle">Find your current level and build the right roadmap.</p>
+
+  <div class="assessment-card">
+
+    <div id="questionArea">
+      <span id="questionNumber">Question 1 of 5</span>
+      <h2 id="questionText">What does HTML stand for?</h2>
+
+      <div id="answers"></div>
+
+      <button class="primary-btn" onclick="nextQuestion()">
+        Next →
+      </button>
+    </div>
+
+    <div id="resultArea" class="hidden">
+      <h2>🎉 Assessment Complete!</h2>
+      <div class="result-score" id="scoreText">0/5</div>
+      <h3 id="levelText">Beginner</h3>
+      <p id="resultMessage"></p>
+
+      <button class="primary-btn" onclick="createRoadmap()">
+        Create My Roadmap →
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ROADMAP -->
+<section id="roadmap" class="page">
+
+  <h1>🗺️ My Learning Roadmap</h1>
+  <p class="subtitle">Your journey from beginner to career-ready.</p>
+
+  <div id="roadmapList"></div>
+
+</section>
+
+
+<!-- SKILLS -->
+<section id="skills" class="page">
+  <h1>💡 Skills</h1>
+
+  <div class="grid">
+    <div class="card skill-card">
+      <h2>🐍 Python</h2>
+      <p>Completed</p>
+      <span class="badge">✓ Done</span>
+    </div>
+
+    <div class="card skill-card">
+      <h2>🔢 NumPy</h2>
+      <p>Completed</p>
+      <span class="badge">✓ Done</span>
+    </div>
+
+    <div class="card skill-card">
+      <h2>🐼 Pandas</h2>
+      <p>Currently learning</p>
+      <span class="badge current-badge">In Progress</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- OTHER PAGES -->
+<section id="practice" class="page simple-page">
+  <h1>🧠 Practice</h1>
+  <p>Practice questions, coding challenges and quizzes will appear here.</p>
+</section>
+
+<section id="projects" class="page simple-page">
+  <h1>🛠 Projects</h1>
+  <p>Build real-world projects and add them to your portfolio.</p>
+</section>
+
+<section id="planner" class="page simple-page">
+  <h1>📅 Planner</h1>
+  <p>Plan your daily and weekly learning schedule.</p>
+</section>
 
 <section id="dashboard" class="page simple-page">
-
-    <h1>Learning Dashboard</h1>
-
-    <p>Your complete learning overview.</p>
-
-    <div class="dashboard-big-card">
-
-        <h2>Progress</h2>
-
-        <strong id="dashboardProgressText">42%</strong>
-
-        <div class="big-bar">
-            <div id="dashboardProgress"></div>
-        </div>
-
-    </div>
-
+  <h1>📊 Dashboard</h1>
+  <p>Track your XP, progress, streak and completed skills.</p>
 </section>
 
+<section id="career" class="page simple-page">
+  <h1>💼 Career</h1>
+  <p>Explore career paths and internship preparation.</p>
+</section>
 
-</main>
+<section id="portfolio" class="page simple-page">
+  <h1>🚀 Portfolio</h1>
+  <p>Showcase your projects and skills.</p>
+</section>
 
-</div>
+<section id="achievements" class="page simple-page">
+  <h1>🏆 Achievements</h1>
+  <p>Badges and milestones you've unlocked.</p>
+</section>
 
 
 <footer>
-    © 2026 SkillPilot · Learn smarter. Build skills. Reach your goal.
+© 2026 SkillPilot · Learn smarter. Build skills. Reach your goal.
 </footer>
 
+</main>
+</div>
 
 <script src="script.js"></script>
 
 </body>
-    </html>
+          </html>
