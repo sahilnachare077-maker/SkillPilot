@@ -1,19 +1,10 @@
-/* =====================================
-   SKILLPILOT V6 - MAIN JAVASCRIPT
-===================================== */
+let currentXP = 320;
 
-
-/* =====================================
-   USER NAME
-===================================== */
-
-let userName = localStorage.getItem("skillpilotUserName");
+let userName = localStorage.getItem("skillpilotName");
 
 if (!userName) {
 
-    userName = prompt(
-        "Welcome to SkillPilot! Enter your name:"
-    );
+    userName = prompt("What is your name?");
 
     if (!userName || userName.trim() === "") {
         userName = "Student";
@@ -21,539 +12,318 @@ if (!userName) {
 
     userName = userName.trim();
 
-    localStorage.setItem(
-        "skillpilotUserName",
-        userName
-    );
+    localStorage.setItem("skillpilotName", userName);
 }
 
 
-/* =====================================
-   USER PROGRESS
-===================================== */
+function updateUserName() {
 
-let xp = 320;
-let streak = 5;
-let progress = 42;
+    const nameElements = [
+
+        document.getElementById("userName"),
+
+        document.getElementById("topUserName"),
+
+        document.getElementById("profileUserName"),
+
+        document.getElementById("profileName")
+
+    ];
 
 
-/* =====================================
-   PAGE NAVIGATION
-===================================== */
+    nameElements.forEach(function(element) {
 
-function showPage(page) {
-
-    document.querySelectorAll(".page").forEach(function(item) {
-        item.classList.remove("active");
-    });
-
-    const target =
-        document.getElementById(page);
-
-    if (target) {
-        target.classList.add("active");
-    }
-
-    document.querySelectorAll(".side-link").forEach(function(item) {
-        item.classList.remove("active");
-    });
-
-    if (page === "home") {
-
-        const homeButton =
-            document.querySelector(".side-link");
-
-        if (homeButton) {
-            homeButton.classList.add("active");
+        if (element) {
+            element.textContent = userName;
         }
+
+    });
+
+
+    const initial =
+        document.getElementById("userInitial");
+
+
+    if (initial) {
+
+        initial.textContent =
+            userName.charAt(0).toUpperCase();
+
     }
 
-    if (page === "roadmap") {
-        renderRoadmap();
+}
+
+
+function showPage(pageId) {
+
+    const pages =
+        document.querySelectorAll(".page");
+
+
+    pages.forEach(function(page) {
+
+        page.classList.remove("active");
+
+    });
+
+
+    const selectedPage =
+        document.getElementById(pageId);
+
+
+    if (selectedPage) {
+
+        selectedPage.classList.add("active");
+
     }
 
-    if (page === "dashboard") {
-        updateDashboard();
+
+    const links =
+        document.querySelectorAll(".side-link");
+
+
+    links.forEach(function(link) {
+
+        link.classList.remove("active");
+
+    });
+
+
+    const clickedLink =
+        Array.from(links).find(function(link) {
+
+            return link.getAttribute("onclick") ===
+                "showPage('" + pageId + "')";
+
+        });
+
+
+    if (clickedLink) {
+
+        clickedLink.classList.add("active");
+
     }
+
 
     window.scrollTo({
+
         top: 0,
+
         behavior: "smooth"
+
     });
+
 }
 
-
-/* =====================================
-   DAILY MISSION
-===================================== */
 
 function completeMission() {
 
-    xp += 50;
-
-    updateXPDisplay();
-
-    /*
-       No popup here.
-       XP updates silently.
-    */
-}
+    currentXP += 50;
 
 
-/* =====================================
-   UPDATE XP
-===================================== */
+    if (currentXP > 500) {
+        currentXP = 500;
+    }
 
-function updateXPDisplay() {
 
-    const currentXP =
+    const xp =
         document.getElementById("currentXP");
 
-    if (currentXP) {
-        currentXP.innerText = xp;
+
+    if (xp) {
+        xp.textContent = currentXP;
     }
 
 
     const sideXP =
         document.getElementById("sideXP");
 
+
     if (sideXP) {
-        sideXP.innerText =
-            xp + " / 500 XP";
-    }
 
+        sideXP.textContent =
+            currentXP + " / 500 XP";
 
-    const sideXPBar =
-        document.getElementById("sideXPBar");
-
-    if (sideXPBar) {
-
-        sideXPBar.style.width =
-            Math.min(
-                (xp / 500) * 100,
-                100
-            ) + "%";
     }
 
 
     const levelProgress =
         document.getElementById("levelProgress");
 
+
     if (levelProgress) {
 
         levelProgress.style.width =
-            Math.min(
-                (xp / 500) * 100,
-                100
-            ) + "%";
+            (currentXP / 500 * 100) + "%";
+
     }
+
+
+    const sideXPBar =
+        document.getElementById("sideXPBar");
+
+
+    if (sideXPBar) {
+
+        sideXPBar.style.width =
+            (currentXP / 500 * 100) + "%";
+
+    }
+
+
+    const missionButton =
+        document.querySelector(
+            ".mission-card .primary"
+        );
+
+
+    if (missionButton) {
+
+        missionButton.textContent =
+            "Mission Completed ✓";
+
+        missionButton.disabled = true;
+
+        missionButton.style.opacity = "0.7";
+
+    }
+
 }
 
 
-/* =====================================
-   ROADMAP DATA
-===================================== */
+function startAssessment() {
 
-const roadmapData = [
+    alert(
+        "Assessment module is ready for the next update."
+    );
 
-    {
-        title: "Python Foundations",
-
-        description:
-            "Learn Python syntax, variables, functions and problem solving.",
-
-        status: "completed"
-    },
+}
 
 
-    {
-        title: "NumPy Fundamentals",
+function createRoadmap() {
 
-        description:
-            "Work with arrays and numerical data using NumPy.",
+    const roadmap = [
 
-        status: "completed"
-    },
+        {
+            title: "Python",
+            status: "✓ Completed"
+        },
 
+        {
+            title: "NumPy",
+            status: "✓ Completed"
+        },
 
-    {
-        title: "Pandas DataFrame",
+        {
+            title: "Pandas",
+            status: "• In Progress"
+        },
 
-        description:
-            "Learn how to load, clean and analyze datasets using Pandas.",
+        {
+            title: "Statistics",
+            status: "🔒 Locked"
+        },
 
-        status: "current"
-    },
+        {
+            title: "Machine Learning",
+            status: "🔒 Locked"
+        },
 
+        {
+            title: "Projects",
+            status: "🔒 Locked"
+        },
 
-    {
-        title: "Statistics",
+        {
+            title: "Portfolio",
+            status: "🔒 Locked"
+        },
 
-        description:
-            "Understand probability, averages, distributions and data patterns.",
+        {
+            title: "Internship Preparation",
+            status: "🔒 Locked"
+        }
 
-        status: "locked"
-    },
+    ];
 
-
-    {
-        title: "Machine Learning",
-
-        description:
-            "Learn datasets, models, training and evaluation.",
-
-        status: "locked"
-    },
-
-
-    {
-        title: "Real World Projects",
-
-        description:
-            "Build portfolio-ready AI and ML projects.",
-
-        status: "locked"
-    }
-
-];
-
-
-/* =====================================
-   RENDER ROADMAP
-===================================== */
-
-function renderRoadmap() {
 
     const container =
         document.getElementById("roadmapList");
+
 
     if (!container) {
         return;
     }
 
+
     container.innerHTML = "";
 
 
-    roadmapData.forEach(function(item, index) {
+    roadmap.forEach(function(item) {
 
         const div =
             document.createElement("div");
+
 
         div.className =
             "roadmap-item";
 
 
-        let statusText =
-            "🔒 Locked";
+        div.innerHTML =
 
+            "<b>" +
+            item.title +
+            "</b>" +
 
-        if (item.status === "completed") {
+            "<br>" +
 
-            statusText =
-                "✅ Completed";
-        }
-
-
-        if (item.status === "current") {
-
-            statusText =
-                "🟡 In Progress";
-        }
-
-
-        div.innerHTML = `
-
-            <div class="roadmap-number">
-
-                ${
-                    item.status === "completed"
-                    ? "✓"
-                    : index + 1
-                }
-
-            </div>
-
-
-            <div>
-
-                <h3>
-                    ${item.title}
-                </h3>
-
-
-                <p>
-                    ${item.description}
-                </p>
-
-
-                <span class="skill-status">
-
-                    ${statusText}
-
-                </span>
-
-            </div>
-
-        `;
+            "<small>" +
+            item.status +
+            "</small>";
 
 
         container.appendChild(div);
 
     });
+
 }
 
 
-/* =====================================
-   DASHBOARD
-===================================== */
-
-function updateDashboard() {
-
-    const progressText =
-        document.getElementById(
-            "dashboardProgressText"
-        );
-
-
-    const progressBar =
-        document.getElementById(
-            "dashboardProgress"
-        );
-
-
-    if (progressText) {
-
-        progressText.innerText =
-            progress + "%";
-    }
-
-
-    if (progressBar) {
-
-        progressBar.style.width =
-            progress + "%";
-    }
-}
-
-
-/* =====================================
-   TODAY'S PLAN
-===================================== */
-
-document.addEventListener(
-    "change",
-    function(event) {
-
-        if (
-            event.target.matches(
-                ".check-item input"
-            )
-        ) {
-
-            if (event.target.checked) {
-
-                xp += 10;
-
-                updateXPDisplay();
-            }
-        }
-
-    }
-);
-
-
-/* =====================================
-   USER NAME DISPLAY
-===================================== */
-
 document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-        const greetingName =
+        updateUserName();
+
+        createRoadmap();
+
+
+        const levelProgress =
             document.getElementById(
-                "userName"
+                "levelProgress"
             );
 
 
-        const topName =
+        if (levelProgress) {
+
+            levelProgress.style.width =
+                (currentXP / 500 * 100) + "%";
+
+        }
+
+
+        const sideXPBar =
             document.getElementById(
-                "topUserName"
+                "sideXPBar"
             );
 
 
-        if (greetingName) {
+        if (sideXPBar) {
 
-            greetingName.innerText =
-                userName;
-        }
-
-
-        if (topName) {
-
-            topName.innerText =
-                userName;
-        }
-
-
-        updateXPDisplay();
-
-        updateDashboard();
-
-    }
-);
-
-
-/* =====================================
-   SEARCH
-===================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        const searchInput =
-            document.querySelector(
-                ".search input"
-            );
-
-
-        if (!searchInput) {
-            return;
-        }
-
-
-        searchInput.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key === "Enter") {
-
-                    const value =
-                        searchInput.value.trim();
-
-
-                    if (value !== "") {
-
-                        console.log(
-                            "Searching for:",
-                            value
-                        );
-
-                    }
-
-                }
-
-            }
-        );
-
-    }
-);
-
-
-/* =====================================
-   TODAY'S PLAN CHECKBOXES
-===================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        const checkboxes =
-            document.querySelectorAll(
-                ".check-item input"
-            );
-
-
-        checkboxes.forEach(
-            function(checkbox) {
-
-                checkbox.addEventListener(
-                    "change",
-                    function() {
-
-                        const item =
-                            checkbox.closest(
-                                ".check-item"
-                            );
-
-
-                        if (checkbox.checked) {
-
-                            if (item) {
-
-                                item.classList.add(
-                                    "checked"
-                                );
-                            }
-
-                        } else {
-
-                            if (item) {
-
-                                item.classList.remove(
-                                    "checked"
-                                );
-                            }
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =====================================
-   START APP
-===================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        const pages =
-            document.querySelectorAll(
-                ".page"
-            );
-
-
-        if (pages.length > 0) {
-
-            pages.forEach(
-                function(page) {
-
-                    page.classList.remove(
-                        "active"
-                    );
-
-                }
-            );
-
-
-            const home =
-                document.getElementById(
-                    "home"
-                );
-
-
-            if (home) {
-
-                home.classList.add(
-                    "active"
-                );
-            }
+            sideXPBar.style.width =
+                (currentXP / 500 * 100) + "%";
 
         }
-
-
-        updateXPDisplay();
-
-        updateDashboard();
 
     }
 );
